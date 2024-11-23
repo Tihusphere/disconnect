@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4fkn8x0lamj7"]
+
+[ext_resource type="PackedScene" uid="uid://b5wu5aa3tym70" path="res://scenes/button.tscn" id="1_2vbmg"]
+[ext_resource type="Script" path="res://scripts/scene_change_button.gd" id="1_wqnbb"]
+[ext_resource type="Texture2D" uid="uid://u23h212msltg" path="res://textures/bg.png" id="2_gwsw8"]
+[ext_resource type="Texture2D" uid="uid://bw6qf4tv1hpnl" path="res://textures/waterfall.png" id="3_xgdog"]
+
+[node name="DeathScreen" type="CanvasLayer"]
+
+[node name="Waterfall" type="Sprite2D" parent="."]
+position = Vector2(581, 320)
+scale = Vector2(0.427966, 0.427966)
+texture = ExtResource("3_xgdog")
+
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(-571, 316)
+scale = Vector2(0.436672, 0.436672)
+texture = ExtResource("2_gwsw8")
+
+[node name="Bg2" type="Sprite2D" parent="."]
+position = Vector2(1680, 314)
+scale = Vector2(0.436672, 0.436672)
+texture = ExtResource("2_gwsw8")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -363.0
+offset_top = 84.0
+offset_right = 364.0
+offset_bottom = 289.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 125
+text = "Disconnect"
+horizontal_alignment = 1
+
+[node name="Play" parent="." instance=ExtResource("1_2vbmg")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -218.5
+offset_top = -279.0
+offset_right = 218.5
+offset_bottom = -112.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_wqnbb")
+scene_path = "res://intro_cutscene.tscn"
+
+[node name="Label" parent="Play" index="1"]
+offset_left = 0.5
+offset_right = 0.5
+text = "Play
+"
+
+[editable path="Play"]

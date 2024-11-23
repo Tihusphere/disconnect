@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5wu5aa3tym70"]
+
+[ext_resource type="Theme" uid="uid://cw7871aq2c5c1" path="res://themes/invis.tres" id="1_ew6o2"]
+[ext_resource type="Texture2D" uid="uid://dppkqi00rf2dm" path="res://textures/button.png" id="2_dfwhx"]
+[ext_resource type="Texture2D" uid="uid://s6kf0shwagdt" path="res://textures/button_glow.png" id="3_p108v"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_iu5nq"]
+blend_mode = 1
+
+[node name="Restart" type="Button"]
+offset_right = 437.0
+offset_bottom = 167.0
+theme = ExtResource("1_ew6o2")
+theme_override_font_sizes/font_size = 50
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+offset_left = -29.0
+offset_top = -2.0
+offset_right = 471.0
+offset_bottom = 191.0
+texture = ExtResource("2_dfwhx")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="Glow" type="TextureRect" parent="TextureRect"]
+z_index = -1
+material = SubResource("CanvasItemMaterial_iu5nq")
+layout_mode = 0
+offset_left = -4.0
+offset_top = 1.0
+offset_right = 496.0
+offset_bottom = 194.0
+texture = ExtResource("3_p108v")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -7.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.52549, 0.831373, 0.894118, 1)
+theme_override_font_sizes/font_size = 70
+text = "Button (real)"
+horizontal_alignment = 1
+vertical_alignment = 1

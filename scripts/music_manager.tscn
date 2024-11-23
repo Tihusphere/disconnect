@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://doo4nws1v1frt"]
+
+[ext_resource type="AudioStream" uid="uid://b7pq8jy84vt1q" path="res://audio/music.mp3" id="1_2k8es"]
+[ext_resource type="Script" path="res://scripts/music_manager.gd" id="2_p3m0p"]
+[ext_resource type="AudioStream" uid="uid://c3jp5814kwat0" path="res://audio/shatter.mp3" id="3_mn0x2"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3ewcb"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("3_mn0x2")
+
+[node name="MusicManager" type="AudioStreamPlayer"]
+stream = ExtResource("1_2k8es")
+bus = &"Music"
+parameters/looping = true
+script = ExtResource("2_p3m0p")
+
+[node name="Damage" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_3ewcb")
+bus = &"Shatter"

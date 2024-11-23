@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsf40k5sw8vlt"]
+
+[ext_resource type="Script" path="res://scripts/poison_plant.gd" id="1_evlso"]
+[ext_resource type="Texture2D" uid="uid://bo2sf1s07h8ne" path="res://textures/plant_off.png" id="2_jignd"]
+[ext_resource type="AudioStream" uid="uid://c2dn28dewfdt8" path="res://audio/plant_attack.wav" id="3_kqloc"]
+[ext_resource type="Script" path="res://scripts/audio_fader.gd" id="4_f7e5i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yhwfq"]
+size = Vector2(200, 200)
+
+[node name="PoisonPlant" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_evlso")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_yhwfq")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(4, -2)
+texture = ExtResource("2_jignd")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_kqloc")
+volume_db = 0.495
+max_distance = 1000.0
+bus = &"Sound Effects"
+script = ExtResource("4_f7e5i")

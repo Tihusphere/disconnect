@@ -1,14 +1,60 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5u22kp4i32xn"]
+[gd_scene load_steps=8 format=3 uid="uid://b5u22kp4i32xn"]
 
-[ext_resource type="Texture2D" uid="uid://xlfh0joc7j5i" path="res://icon.svg" id="1_70wdo"]
+[ext_resource type="Script" path="res://scripts/character.gd" id="1_5kuj4"]
+[ext_resource type="Texture2D" uid="uid://bfi024a65ej7d" path="res://textures/crystal_glow.png" id="3_bntwx"]
+[ext_resource type="Texture2D" uid="uid://dlhais3gsgqn2" path="res://textures/body_idle.png" id="3_tyqd6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ybjgr"]
+radius = 30.0
+height = 100.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qn4j8"]
+radius = 30.0666
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jucix"]
+blend_mode = 1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jjcy4"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_5kuj4")
+metadata/is_char = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.739193, 0.739193)
 shape = SubResource("CapsuleShape2D_ybjgr")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.161417, 0.247684)
-texture = ExtResource("1_70wdo")
+[node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+shape = SubResource("CapsuleShape2D_ybjgr")
+
+[node name="GroundBonus" type="Area2D" parent="."]
+position = Vector2(0, 31)
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundBonus"]
+shape = SubResource("CircleShape2D_qn4j8")
+
+[node name="SpriteAnchor" type="Node2D" parent="."]
+position = Vector2(0, 51)
+
+[node name="Sprite" type="Sprite2D" parent="SpriteAnchor"]
+position = Vector2(1, -53)
+scale = Vector2(0.436577, 0.436577)
+texture = ExtResource("3_tyqd6")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_jucix")
+position = Vector2(0, 60)
+emitting = false
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_jjcy4")
+texture = ExtResource("3_bntwx")
+one_shot = true
+explosiveness = 1.0
