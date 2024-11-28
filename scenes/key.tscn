@@ -1,0 +1,127 @@
+[gd_scene load_steps=13 format=3 uid="uid://cjktopccjk1s"]
+
+[ext_resource type="Script" path="res://scripts/key.gd" id="1_0rhuf"]
+[ext_resource type="PackedScene" uid="uid://cbbld6yxjsplt" path="res://scenes/flash.tscn" id="3_0gpi6"]
+[ext_resource type="AudioStream" uid="uid://c8x2o5k3kpmhp" path="res://audio/key_pickup.mp3" id="3_2224p"]
+[ext_resource type="Texture2D" uid="uid://oojqs0p5juem" path="res://textures/key.PNG" id="3_7838l"]
+[ext_resource type="AudioStream" uid="uid://crberrx6olbtl" path="res://audio/crystal_ring.mp3" id="4_6jjoe"]
+[ext_resource type="Material" uid="uid://boq4gjd4cduwh" path="res://shaders/add_blend_material.tres" id="4_xte1a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dlgiu"]
+radius = 97.0824
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bbm3y"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("3_2224p")
+
+[sub_resource type="Animation" id="Animation_il715"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/Flash:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite/Add:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cdgc6"]
+resource_name = "pickup"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/Flash:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.366667),
+"transitions": PackedFloat32Array(3.03143, 0.466516, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.627451), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dgev4"]
+resource_name = "go_to_door"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/Add:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4l11g"]
+_data = {
+"RESET": SubResource("Animation_il715"),
+"go_to_door": SubResource("Animation_dgev4"),
+"pickup": SubResource("Animation_cdgc6")
+}
+
+[node name="Key" type="Node2D"]
+modulate = Color(1, 0.411765, 0.411765, 1)
+z_index = 1
+script = ExtResource("1_0rhuf")
+
+[node name="PickupTrigger" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupTrigger"]
+shape = SubResource("CircleShape2D_dlgiu")
+debug_color = Color(0.7, 0.7, 0.7, 0.419608)
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.73706, 0.73706)
+texture = ExtResource("3_7838l")
+
+[node name="Flash" parent="Sprite" instance=ExtResource("3_0gpi6")]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -12.2107)
+scale = Vector2(6.78371, 6.78371)
+
+[node name="Add" type="Sprite2D" parent="Sprite"]
+modulate = Color(1, 1, 1, 0)
+material = ExtResource("4_xte1a")
+texture = ExtResource("3_7838l")
+
+[node name="RingSound" type="AudioStreamPlayer2D" parent="Sprite"]
+stream = ExtResource("4_6jjoe")
+volume_db = -20.0
+pitch_scale = 0.84
+bus = &"Shatter"
+
+[node name="PickupSound" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = SubResource("AudioStreamRandomizer_bbm3y")
+bus = &"Shatter"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4l11g")
+}
+
+[connection signal="body_entered" from="PickupTrigger" to="." method="_on_pickup_trigger_body_entered"]

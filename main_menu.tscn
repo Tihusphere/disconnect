@@ -60,4 +60,26 @@ offset_right = 0.5
 text = "Play
 "
 
+[node name="Play2" parent="." instance=ExtResource("1_2vbmg")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -60.0
+offset_top = -82.0
+offset_right = 377.0
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.278732, 0.278732)
+script = ExtResource("1_wqnbb")
+scene_path = "res://level_test.tscn"
+
+[node name="Label" parent="Play2" index="1"]
+offset_left = 0.5
+offset_right = 0.5
+text = "test level"
+
 [editable path="Play"]
+[editable path="Play2"]

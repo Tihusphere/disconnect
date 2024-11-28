@@ -1,0 +1,184 @@
+[gd_scene load_steps=17 format=3 uid="uid://ca6l1mkw8c037"]
+
+[ext_resource type="Script" path="res://scripts/character_manager.gd" id="1_0dshp"]
+[ext_resource type="Texture2D" uid="uid://u23h212msltg" path="res://textures/bg.png" id="2_i0n7j"]
+[ext_resource type="Texture2D" uid="uid://bw6qf4tv1hpnl" path="res://textures/waterfall.png" id="3_gy2ej"]
+[ext_resource type="PackedScene" uid="uid://b5u22kp4i32xn" path="res://scenes/character.tscn" id="4_a24ut"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="5_rjllf"]
+[ext_resource type="PackedScene" uid="uid://dtgnxahrsly61" path="res://scenes/gui.tscn" id="6_nv7n3"]
+[ext_resource type="PackedScene" uid="uid://bylacadyc3313" path="res://scenes/win_object.tscn" id="7_tme4m"]
+[ext_resource type="PackedScene" uid="uid://dsf40k5sw8vlt" path="res://scenes/poison_plant.tscn" id="9_pysp0"]
+[ext_resource type="PackedScene" uid="uid://cjktopccjk1s" path="res://scenes/key.tscn" id="10_cevyp"]
+[ext_resource type="Script" path="res://scripts/kill_box.gd" id="10_huf30"]
+[ext_resource type="PackedScene" uid="uid://cbbld6yxjsplt" path="res://scenes/flash.tscn" id="11_evn1o"]
+[ext_resource type="PackedScene" uid="uid://bysl3myxiityj" path="res://scenes/door.tscn" id="11_kib4y"]
+[ext_resource type="PackedScene" uid="uid://5ybdfq5lextm" path="res://scenes/wall.tscn" id="12_qa17v"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_syicx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7fx88"]
+size = Vector2(8330, 264.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vpqo3"]
+size = Vector2(20, 400)
+
+[node name="Game" type="Node2D"]
+metadata/is_game = true
+
+[node name="CharacterManager" type="Node" parent="."]
+script = ExtResource("1_0dshp")
+this_level = "test"
+
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(-21, 67)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_i0n7j")
+
+[node name="Waterfall" type="Sprite2D" parent="Bg"]
+z_index = -1
+position = Vector2(2585, 2.5)
+texture = ExtResource("3_gy2ej")
+
+[node name="Bg2" type="Sprite2D" parent="Bg"]
+position = Vector2(5112.5, 0)
+texture = ExtResource("2_i0n7j")
+
+[node name="Waterfall2" type="Sprite2D" parent="Bg"]
+z_index = -1
+position = Vector2(7740, 2.5)
+texture = ExtResource("3_gy2ej")
+
+[node name="Bg3" type="Sprite2D" parent="Bg"]
+position = Vector2(10267.5, 0)
+texture = ExtResource("2_i0n7j")
+
+[node name="Spirit" parent="." instance=ExtResource("4_a24ut")]
+material = SubResource("CanvasItemMaterial_syicx")
+position = Vector2(-444, 299)
+floor_max_angle = 1.55334
+skin = "spirit"
+
+[node name="Body" parent="." instance=ExtResource("4_a24ut")]
+position = Vector2(196, 1043)
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("follow")]
+position = Vector2(48, 68)
+zoom = Vector2(1.027, 1.027)
+limit_left = -712
+limit_top = -400
+limit_right = 4072
+limit_bottom = 400
+editor_draw_limits = true
+script = ExtResource("5_rjllf")
+follow = NodePath("../Spirit")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("6_nv7n3")]
+
+[node name="WinObject" parent="." instance=ExtResource("7_tme4m")]
+position = Vector2(3987, -67)
+scene_path = "res://level_2.tscn"
+
+[node name="Level" type="StaticBody2D" parent="."]
+position = Vector2(1243, 0)
+scale = Vector2(0.4, 0.4)
+
+[node name="PoisonPlant" parent="." instance=ExtResource("9_pysp0")]
+position = Vector2(1915, -133)
+rotation = 3.14159
+
+[node name="PoisonPlant3" parent="." instance=ExtResource("9_pysp0")]
+position = Vector2(443, -140)
+rotation = 9.16296
+delay = 2000
+
+[node name="PoisonPlant2" parent="." instance=ExtResource("9_pysp0")]
+position = Vector2(2211, -133)
+rotation = 3.14159
+delay = 500
+
+[node name="KillBox" type="Area2D" parent="."]
+position = Vector2(2532, 528)
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+script = ExtResource("10_huf30")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillBox"]
+position = Vector2(-180, 107.75)
+shape = SubResource("RectangleShape2D_7fx88")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(4092, -127)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_vpqo3")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(-733, 40)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource("RectangleShape2D_vpqo3")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(624, 389)
+rotation = 1.5708
+scale = Vector2(0.408044, 6.68645)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+shape = SubResource("RectangleShape2D_vpqo3")
+
+[node name="Key" parent="." instance=ExtResource("10_cevyp")]
+modulate = Color(1, 0.411765, 0.411765, 1)
+position = Vector2(-275, 284)
+
+[node name="Flash2" parent="Key" instance=ExtResource("11_evn1o")]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -1)
+scale = Vector2(5, 5)
+
+[node name="Key4" parent="." instance=ExtResource("10_cevyp")]
+modulate = Color(0.411765, 1, 0.411765, 1)
+position = Vector2(-60, 147)
+color = 2
+
+[node name="Flash2" parent="Key4" instance=ExtResource("11_evn1o")]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -1)
+scale = Vector2(5, 5)
+
+[node name="Wall" parent="." instance=ExtResource("12_qa17v")]
+position = Vector2(-94, 178)
+scale = Vector2(47.0676, 5.53012)
+
+[node name="Wall3" parent="." instance=ExtResource("12_qa17v")]
+position = Vector2(863, 179)
+scale = Vector2(3.628, 5.53)
+
+[node name="Wall2" parent="." instance=ExtResource("12_qa17v")]
+position = Vector2(-695, 259)
+scale = Vector2(2.61794, 2.22027)
+
+[node name="Key2" parent="." instance=ExtResource("10_cevyp")]
+modulate = Color(1, 0.901961, 0.411765, 1)
+position = Vector2(540, 166)
+color = 1
+
+[node name="Key3" parent="." instance=ExtResource("10_cevyp")]
+modulate = Color(0.803922, 0.529412, 1, 1)
+position = Vector2(1004, 324)
+color = 3
+
+[node name="Door" parent="." instance=ExtResource("11_kib4y")]
+position = Vector2(210, 308)
+
+[node name="Door3" parent="." instance=ExtResource("11_kib4y")]
+position = Vector2(-639, 165)
+rotation = -1.57079
+color = 3
+
+[node name="Door2" parent="." instance=ExtResource("11_kib4y")]
+position = Vector2(861, 310)
+color = 1

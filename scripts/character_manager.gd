@@ -1,10 +1,10 @@
 extends Node
 class_name CharacterManager
 
-@export var this_level: int = 1
+@export var this_level: String = "1"
 
-@onready var spirit = get_node_or_null("/root/Game/Spirit")
-@onready var body = get_node_or_null("/root/Game/Body")
+@onready var spirit := get_node_or_null("/root/Game/Spirit") as PlayerCharacter
+@onready var body := get_node_or_null("/root/Game/Body") as PlayerCharacter
 
 @onready var is_game = true if get_node_or_null("/root/Game") else false
 const frames_of_delay: int = 90
@@ -15,20 +15,16 @@ class FrameInput:
 	var knockbacks: Array[Vector2] = []
 	var known_position: Vector2
 	
+var current_key: Key = null
 var max_health: int = 4
 var health: int = max_health
 var input_history: Array[FrameInput] = []
 
 var invul_until: int = -INF
 var resync_position_at: int = 5000
-
-func update_scene_vars():
-	print(is_game)
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	update_scene_vars()
-	GameManager.on_scene_changed.connect(update_scene_vars)
 	GameManager.current_level = this_level
 
 func damage(amount: int):

@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name PlayerCharacter
 
 @export var skin = "body"
 
@@ -24,6 +25,8 @@ var knockback_vector: Vector2 = Vector2(0,0)
 var coyote_time_ends_at: int = -INF
 var allow_color_resolve = true
 
+var visual_direction: int = -1
+
 # input
 var direction: int = 0
 func jump():
@@ -32,6 +35,7 @@ func jump():
 	velocity.y = JUMP_VELOCITY
 	if (!is_grounded()):
 		double_jumps_remaining -= 1
+	$JumpSound.play()
 		
 func is_grounded():
 	return is_on_floor() or $GroundBonus.get_overlapping_bodies()
@@ -46,6 +50,7 @@ func update_frame():
 	else:
 		$SpriteAnchor/Sprite.flip_h = direction == 1
 		$SpriteAnchor/Sprite.texture = frames[skin].walk[floor((Time.get_ticks_msec()/250))%2]
+		visual_direction = direction
 			
 	
 			

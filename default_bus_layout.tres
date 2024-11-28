@@ -1,7 +1,12 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://c37aff1xk5yu2"]
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://c37aff1xk5yu2"]
 
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_ipr7d"]
 resource_name = "Reverb"
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_opvs3"]
+resource_name = "Reverb"
+damping = 0.19
+hipass = 0.06
 
 [resource]
 bus/1/name = &"Music"
@@ -24,3 +29,11 @@ bus/3/volume_db = 0.0
 bus/3/send = &"Sound Effects"
 bus/3/effect/0/effect = SubResource("AudioEffectReverb_ipr7d")
 bus/3/effect/0/enabled = true
+bus/4/name = &"Door"
+bus/4/solo = false
+bus/4/mute = false
+bus/4/bypass_fx = false
+bus/4/volume_db = 0.0
+bus/4/send = &"Master"
+bus/4/effect/0/effect = SubResource("AudioEffectReverb_opvs3")
+bus/4/effect/0/enabled = true

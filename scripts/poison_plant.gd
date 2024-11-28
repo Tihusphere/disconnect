@@ -32,11 +32,16 @@ func _process(delta):
 			$AudioStreamPlayer2D.fade_out()
 	
 	if is_on:
-		$Sprite.texture = frames.on[floor((Time.get_ticks_msec()/100))%2]
+		$SpriteAnchor.scale.y = Util.smooth_step($SpriteAnchor.scale.y,1.02,0.7,delta)
+		$SpriteAnchor/Sprite.texture = frames.on[floor((Time.get_ticks_msec()/100))%2]
 		if Time.get_ticks_msec() > damage_at:
 			for body in get_overlapping_bodies():
 				if (body.skin == "spirit"):
 					damage_at = Time.get_ticks_msec() + damage_interval
 					character_manager.damage(1)
 	else:
-		$Sprite.texture = frames.off[0]
+		if switch_at - Time.get_ticks_msec() < 500:
+			$SpriteAnchor.scale.y = Util.smooth_step($SpriteAnchor.scale.y,0.8,0.9,delta)
+		else:
+			$SpriteAnchor.scale.y = Util.smooth_step($SpriteAnchor.scale.y,1,0.7,delta)
+		$SpriteAnchor/Sprite.texture = frames.off[0]

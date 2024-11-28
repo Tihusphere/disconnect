@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://b5u22kp4i32xn"]
+[gd_scene load_steps=9 format=3 uid="uid://b5u22kp4i32xn"]
 
 [ext_resource type="Script" path="res://scripts/character.gd" id="1_5kuj4"]
 [ext_resource type="Texture2D" uid="uid://bfi024a65ej7d" path="res://textures/crystal_glow.png" id="3_bntwx"]
 [ext_resource type="Texture2D" uid="uid://dlhais3gsgqn2" path="res://textures/body_idle.png" id="3_tyqd6"]
+[ext_resource type="AudioStream" uid="uid://dmn2o842gky6k" path="res://audio/jump.wav" id="4_tottg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ybjgr"]
-radius = 30.0
-height = 100.0
+radius = 23.0
+height = 94.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qn4j8"]
 radius = 30.0666
@@ -23,8 +24,8 @@ collision_layer = 2
 script = ExtResource("1_5kuj4")
 metadata/is_char = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(0.739193, 0.739193)
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
 shape = SubResource("CapsuleShape2D_ybjgr")
 
 [node name="PlayerDetector" type="Area2D" parent="."]
@@ -58,3 +59,8 @@ process_material = SubResource("ParticleProcessMaterial_jjcy4")
 texture = ExtResource("3_bntwx")
 one_shot = true
 explosiveness = 1.0
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_tottg")
+volume_db = -15.0
+bus = &"Shatter"

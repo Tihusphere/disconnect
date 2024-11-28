@@ -2,7 +2,7 @@ extends Node
 
 signal on_scene_changed()
 
-var current_level: int
+var current_level: String
 
 func change_scene(path: String):
 	get_tree().change_scene_to_file(path)

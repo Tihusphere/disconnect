@@ -22,7 +22,7 @@ metadata/is_game = true
 
 [node name="CharacterManager" type="Node" parent="."]
 script = ExtResource("1_qvwmo")
-this_level = 2
+this_level = "2"
 
 [node name="Bg" type="Sprite2D" parent="."]
 position = Vector2(-21, 67)
