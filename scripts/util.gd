@@ -3,6 +3,11 @@ extends Node
 static func smooth_step(start, goal, alpha: float, dt: float):
 	alpha = 1 - pow(alpha, dt*60)
 	return start + (goal - start) * alpha
+	
+static func scaled_smooth_step(start, goal, alpha: float, dt: float):
+	if GameManager.is_paused: return start
+	alpha = 1 - pow(alpha, dt*60)
+	return start + (goal - start) * alpha
 
 func wait(time_seconds: float):
 	var tree = get_tree()

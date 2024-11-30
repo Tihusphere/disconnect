@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bysl3myxiityj"]
+[gd_scene load_steps=18 format=3 uid="uid://bysl3myxiityj"]
 
 [ext_resource type="Script" path="res://scripts/door.gd" id="1_mdm6c"]
 [ext_resource type="Texture2D" uid="uid://blrufneexwmak" path="res://textures/door_crystals.png" id="3_6yk7o"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/audio_fader.gd" id="5_sekhp"]
 [ext_resource type="Material" uid="uid://boq4gjd4cduwh" path="res://shaders/add_blend_material.tres" id="6_jxikr"]
 [ext_resource type="PackedScene" uid="uid://cbbld6yxjsplt" path="res://scenes/flash.tscn" id="7_ydb82"]
+[ext_resource type="Script" path="res://scripts/audio_pauser.gd" id="9_i5pkf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wfapn"]
 size = Vector2(350, 232)
@@ -265,10 +266,16 @@ pitch_scale = 1.21
 bus = &"Door"
 parameters/looping = false
 
+[node name="AudioPauser" type="Node" parent="ClickSound"]
+script = ExtResource("9_i5pkf")
+
 [node name="ScrapeSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_2h40j")
 pitch_scale = 1.21
 bus = &"Door"
 script = ExtResource("5_sekhp")
+
+[node name="AudioPauser" type="Node" parent="ScrapeSound"]
+script = ExtResource("9_i5pkf")
 
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]

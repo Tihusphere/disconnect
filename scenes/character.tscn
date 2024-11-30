@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://b5u22kp4i32xn"]
+[gd_scene load_steps=13 format=3 uid="uid://b5u22kp4i32xn"]
 
 [ext_resource type="Script" path="res://scripts/character.gd" id="1_5kuj4"]
 [ext_resource type="Material" uid="uid://cko3vgutfvcm7" path="res://shaders/death_effect.tres" id="2_8s06j"]
 [ext_resource type="Texture2D" uid="uid://bfi024a65ej7d" path="res://textures/crystal_glow.png" id="3_bntwx"]
 [ext_resource type="Texture2D" uid="uid://dlhais3gsgqn2" path="res://textures/body_idle.png" id="3_tyqd6"]
 [ext_resource type="AudioStream" uid="uid://dmn2o842gky6k" path="res://audio/jump.wav" id="4_tottg"]
+[ext_resource type="Script" path="res://scripts/audio_pauser.gd" id="6_g1bw0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ybjgr"]
 radius = 23.0
@@ -82,3 +83,6 @@ explosiveness = 1.0
 stream = ExtResource("4_tottg")
 volume_db = -15.0
 bus = &"Shatter"
+
+[node name="AudioPauser" type="Node" parent="JumpSound"]
+script = ExtResource("6_g1bw0")

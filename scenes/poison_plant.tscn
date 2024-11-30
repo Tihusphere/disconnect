@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dsf40k5sw8vlt"]
+[gd_scene load_steps=7 format=3 uid="uid://dsf40k5sw8vlt"]
 
 [ext_resource type="Script" path="res://scripts/poison_plant.gd" id="1_evlso"]
 [ext_resource type="Texture2D" uid="uid://bl0n687pudkfl" path="res://textures/plant_on_1.png" id="2_a2s1i"]
 [ext_resource type="AudioStream" uid="uid://c2dn28dewfdt8" path="res://audio/plant_attack.wav" id="3_kqloc"]
+[ext_resource type="Script" path="res://scripts/audio_pauser.gd" id="4_00agg"]
 [ext_resource type="Script" path="res://scripts/audio_fader.gd" id="4_f7e5i"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bmv83"]
@@ -24,6 +25,9 @@ volume_db = 4.179
 max_distance = 1000.0
 bus = &"Sound Effects"
 script = ExtResource("4_f7e5i")
+
+[node name="AudioPauser" type="Node" parent="AudioStreamPlayer2D"]
+script = ExtResource("4_00agg")
 
 [node name="SpriteAnchor" type="Node2D" parent="."]
 position = Vector2(0, 94)

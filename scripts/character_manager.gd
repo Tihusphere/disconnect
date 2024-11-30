@@ -1,8 +1,6 @@
 extends Node
 class_name CharacterManager
 
-signal health_changed(old_health: int, new_health: int)
-
 @export var this_level: String = "1"
 
 @onready var spirit := get_node_or_null("/root/Game/Spirit") as PlayerCharacter
@@ -27,13 +25,13 @@ var jump_buffered_until: int = -INF
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	GameManager.current_level = this_level
+	GameManager.current_level_path = get_tree().current_scene.scene_file_path
 	Fader.fade(Color(0,0,0,0),0.25,Color(0,0,0,1))
 
 func damage(amount: int):
 	if health <= 0: return
-	if (Time.get_ticks_msec() > invul_until):
-		invul_until = Time.get_ticks_msec() + 500
+	if (GameManager.scaled_ticks_msec > invul_until):
+		invul_until = GameManager.scaled_ticks_msec + 500
 		health -= amount
 		spirit.modulate = Color(255,1,1,1)
 		MusicManager.play_dmg()
@@ -41,7 +39,7 @@ func damage(amount: int):
 			spirit.playing_death_animation = true
 			await Util.wait(1)
 			await Fader.fade(Color(0,0,0,1),0.25)
-			GameManager.change_scene("res://level_"+str(GameManager.current_level)+".tscn")
+			GameManager.change_scene(GameManager.current_level_path)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -50,6 +48,8 @@ func _physics_process(delta):
 		body = get_node_or_null("/root/Game/Body")
 	else:
 		return
+	
+	if GameManager.is_paused: return
 	
 	var history_entry = FrameInput.new()
 	
@@ -69,7 +69,7 @@ func _physics_process(delta):
 			
 		
 	if (spirit.get_node("PlayerDetector")as Area2D).overlaps_area(body.get_node("PlayerDetector")):
-		if (Time.get_ticks_msec() > invul_until):
+		if (GameManager.scaled_ticks_msec > invul_until):
 			var kb = Vector2(sign((spirit.global_position - body.global_position).x) * 400,-500)
 			spirit.knockback(kb)
 			history_entry.knockbacks.append(kb)

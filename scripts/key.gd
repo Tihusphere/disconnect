@@ -19,7 +19,6 @@ static var color_values = {
 
 @export var color: KEY_COLOR:
 	set(value):
-		print("balls")
 		modulate = color_values[value]
 		
 		#auto rename :D
@@ -69,6 +68,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint(): return
+	if GameManager.is_paused: return
+	
 	# sprite positioning
 	var sprite_goal_pos = global_position
 	var sprite_pos_easing = 0.9
@@ -82,21 +83,21 @@ func _process(delta: float) -> void:
 		sprite_goal_pos = character_manager.spirit.global_position + Vector2(-character_manager.spirit.visual_direction*40,-80)
 		
 	var original_position = $Sprite.global_position
-	$Sprite.global_position = Util.smooth_step($Sprite.global_position,sprite_goal_pos,sprite_pos_easing,delta)
+	$Sprite.global_position = Util.scaled_smooth_step($Sprite.global_position,sprite_goal_pos,sprite_pos_easing,delta)
 	
 	# sprite rotationing
 	$Sprite.global_rotation -= last_rotation_offset
 	if in_door:
-		$Sprite.global_rotation = Util.smooth_step($Sprite.global_rotation,in_door.get_node("Anchor/Key").global_rotation,sprite_pos_easing,delta)
+		$Sprite.global_rotation = Util.scaled_smooth_step($Sprite.global_rotation,in_door.get_node("Anchor/Key").global_rotation,sprite_pos_easing,delta)
 		
 	last_rotation_offset = ($Sprite.global_position.x - original_position.x) * delta
 	$Sprite.global_rotation += last_rotation_offset
 	
 	# sprite floating animation
 	if in_door == null:
-		$Sprite.offset.y = sin(Time.get_ticks_msec()/500.0)*40
+		$Sprite.offset.y = sin(GameManager.scaled_ticks_msec/500.0)*40
 	else:
-		$Sprite.offset.y = Util.smooth_step($Sprite.offset.y,0,0.9,delta)
+		$Sprite.offset.y = Util.scaled_smooth_step($Sprite.offset.y,0,0.9,delta)
 
 func _on_pickup_trigger_body_entered(body: Node2D) -> void:
 	if body is PlayerCharacter && body.skin == "spirit":

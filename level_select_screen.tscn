@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=3 uid="uid://11yngummlsn0"]
+
+[ext_resource type="Texture2D" uid="uid://dui7hkyhkmci0" path="res://textures/lose_screen.png" id="1_lr56o"]
+[ext_resource type="PackedScene" uid="uid://b5wu5aa3tym70" path="res://scenes/button.tscn" id="2_q5wk2"]
+
+[sub_resource type="GDScript" id="GDScript_d8pyp"]
+resource_name = "restart"
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_pressed():
+	GameManager.change_scene(\"res://level_\"+str(GameManager.current_level)+\".tscn\")
+"
+
+[node name="DeathScreen" type="CanvasLayer"]
+
+[node name="LoseScreen" type="Sprite2D" parent="."]
+position = Vector2(577, 346)
+scale = Vector2(0.453174, 0.453174)
+texture = ExtResource("1_lr56o")
+
+[node name="Restart" parent="." instance=ExtResource("2_q5wk2")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -218.0
+offset_top = -191.0
+offset_right = 219.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+script = SubResource("GDScript_d8pyp")
+
+[node name="Label" parent="Restart" index="1"]
+text = "Restart"
+
+[node name="Label2" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -363.5
+offset_top = -298.0
+offset_right = 363.5
+offset_bottom = -93.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 125
+text = "womp"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Restart" to="Restart" method="_on_pressed"]
+
+[editable path="Restart"]

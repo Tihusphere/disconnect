@@ -43,7 +43,7 @@ func is_grounded():
 
 func knockback(vec: Vector2):
 	knockback_vector = vec
-	knockback_until = Time.get_ticks_msec() + 150
+	knockback_until = GameManager.scaled_ticks_msec + 150
 
 func update_frame():
 	if playing_death_animation: return
@@ -51,7 +51,7 @@ func update_frame():
 		$SpriteAnchor/Sprite.texture = frames[skin].idle[0]
 	else:
 		$SpriteAnchor/Sprite.flip_h = direction == 1
-		$SpriteAnchor/Sprite.texture = frames[skin].walk[floor((Time.get_ticks_msec()/250))%2]
+		$SpriteAnchor/Sprite.texture = frames[skin].walk[floor((GameManager.scaled_ticks_msec/250))%2]
 		visual_direction = direction
 			
 	
@@ -84,7 +84,7 @@ func _physics_process(delta):
 		
 	# Add the gravity.
 	if is_grounded() && !jumped_this_frame:
-		coyote_time_ends_at = Time.get_ticks_msec() + 1000
+		coyote_time_ends_at = GameManager.scaled_ticks_msec + 1000
 	if !is_on_floor():
 		velocity += get_gravity() * delta
 		
@@ -96,7 +96,7 @@ func _physics_process(delta):
 	velocity.x += SPEED * direction * ACCELERATION
 	velocity.x *= DRAG
 	
-	if (Time.get_ticks_msec() < knockback_until):
+	if (GameManager.scaled_ticks_msec < knockback_until):
 		velocity = knockback_vector
 
 	if playing_death_animation:

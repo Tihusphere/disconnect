@@ -14,7 +14,7 @@ func fade(color: Color, time_sec: float, from_color = null, color_when_finished 
 	else:
 		start_color = $ColorRect.color
 	
-	started_at_msec = Time.get_ticks_msec()
+	started_at_msec = GameManager.scaled_ticks_msec
 	length_msec = time_sec * 1000
 	
 	goal_color = color
@@ -24,7 +24,7 @@ func fade(color: Color, time_sec: float, from_color = null, color_when_finished 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var t = remap(Time.get_ticks_msec() - started_at_msec,0,length_msec,0,1)
+	var t = remap(GameManager.scaled_ticks_msec - started_at_msec,0,length_msec,0,1)
 	if t < 1 and t >= 0:
 		$ColorRect.color = start_color.lerp(goal_color,t)
 		#$ColorRect.color.a = lerpf($ColorRect.color.a,goal_color.a,t)
