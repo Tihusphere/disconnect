@@ -164,6 +164,7 @@ rotation = 3.14159
 [node name="PoisonPlant3" parent="." instance=ExtResource("9_4phst")]
 position = Vector2(940, 189)
 rotation = 6.40059
+delay = 500
 
 [node name="PoisonPlant5" parent="." instance=ExtResource("9_4phst")]
 position = Vector2(2162, 150)
@@ -172,6 +173,8 @@ rotation = 6.31397
 [node name="PoisonPlant4" parent="." instance=ExtResource("9_4phst")]
 position = Vector2(322, -118)
 rotation = 9.29638
+delay = 3000
+off_length = 4000
 
 [node name="KillBox" type="Area2D" parent="."]
 position = Vector2(2532, 528)

@@ -19,7 +19,21 @@ static var color_values = {
 
 @export var color: KEY_COLOR:
 	set(value):
+		print("balls")
 		modulate = color_values[value]
+		
+		#auto rename :D
+		if Engine.is_editor_hint():
+			var regex = RegEx.new()
+			regex.compile("(Red|Green|Purple|Yellow)?Key(\\d*)")
+			var result = regex.search(name)
+			if result != null:
+				name = name.substr(result.get_end(1))
+				name = name.trim_suffix(result.get_string(2))
+				var prefix: String = KEY_COLOR.keys()[value]
+				prefix = prefix[0].to_upper() + prefix.to_lower().substr(1)
+				name = prefix + name
+				
 		color = value
 		
 @onready var character_manager := get_node_or_null("/root/Game/CharacterManager") as CharacterManager

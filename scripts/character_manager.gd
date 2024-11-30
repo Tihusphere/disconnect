@@ -1,6 +1,8 @@
 extends Node
 class_name CharacterManager
 
+signal health_changed(old_health: int, new_health: int)
+
 @export var this_level: String = "1"
 
 @onready var spirit := get_node_or_null("/root/Game/Spirit") as PlayerCharacter

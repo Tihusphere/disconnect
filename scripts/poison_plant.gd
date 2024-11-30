@@ -39,6 +39,7 @@ func _process(delta):
 				if (body.skin == "spirit"):
 					damage_at = Time.get_ticks_msec() + damage_interval
 					character_manager.damage(1)
+					$SpriteAnchor.scale.y = 1.2
 	else:
 		if switch_at - Time.get_ticks_msec() < 500:
 			$SpriteAnchor.scale.y = Util.smooth_step($SpriteAnchor.scale.y,0.8,0.9,delta)
