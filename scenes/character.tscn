@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://b5u22kp4i32xn"]
+[gd_scene load_steps=12 format=3 uid="uid://b5u22kp4i32xn"]
 
 [ext_resource type="Script" path="res://scripts/character.gd" id="1_5kuj4"]
+[ext_resource type="Material" uid="uid://cko3vgutfvcm7" path="res://shaders/death_effect.tres" id="2_8s06j"]
 [ext_resource type="Texture2D" uid="uid://bfi024a65ej7d" path="res://textures/crystal_glow.png" id="3_bntwx"]
 [ext_resource type="Texture2D" uid="uid://dlhais3gsgqn2" path="res://textures/body_idle.png" id="3_tyqd6"]
 [ext_resource type="AudioStream" uid="uid://dmn2o842gky6k" path="res://audio/jump.wav" id="4_tottg"]
@@ -10,7 +11,17 @@ radius = 23.0
 height = 94.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qn4j8"]
-radius = 30.0666
+radius = 22.0227
+
+[sub_resource type="Shader" id="Shader_nj63j"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's CanvasItemMaterial.
+
+shader_type canvas_item;
+render_mode blend_add;
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2yl8f"]
+shader = SubResource("Shader_nj63j")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jucix"]
 blend_mode = 1
@@ -36,19 +47,26 @@ collision_mask = 2
 shape = SubResource("CapsuleShape2D_ybjgr")
 
 [node name="GroundBonus" type="Area2D" parent="."]
-position = Vector2(0, 31)
-monitorable = false
+position = Vector2(0, 37)
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GroundBonus"]
 shape = SubResource("CircleShape2D_qn4j8")
 
-[node name="SpriteAnchor" type="Node2D" parent="."]
+[node name="SpriteAnchor" type="CanvasGroup" parent="."]
 position = Vector2(0, 51)
+fit_margin = 0.0
+clear_margin = 0.0
 
 [node name="Sprite" type="Sprite2D" parent="SpriteAnchor"]
+material = SubResource("ShaderMaterial_2yl8f")
 position = Vector2(1, -53)
 scale = Vector2(0.436577, 0.436577)
 texture = ExtResource("3_tyqd6")
+
+[node name="SpriteAnchorOld" type="Node2D" parent="."]
+material = ExtResource("2_8s06j")
+position = Vector2(0, 51)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_jucix")

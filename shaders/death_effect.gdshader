@@ -1,0 +1,14 @@
+shader_type canvas_item;
+render_mode blend_add;
+
+uniform sampler2D noise: repeat_disable;
+uniform float progress: hint_range(0.0, 1) = 0.0;
+uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
+
+void fragment(){
+	vec4 c = texture(screen_texture, SCREEN_UV + ((0.5-texture(noise,UV).xy) * progress/2.0));
+	c.a *= 1.0-10.0*(distance(vec2(0.5,.5),UV)*progress);
+	c.a *= 1.0-progress;
+	
+	COLOR *= c;
+}

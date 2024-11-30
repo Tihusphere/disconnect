@@ -81,5 +81,27 @@ offset_left = 0.5
 offset_right = 0.5
 text = "test level"
 
+[node name="Play3" parent="." instance=ExtResource("1_2vbmg")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 81.0
+offset_top = -79.0
+offset_right = 518.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.278732, 0.278732)
+script = ExtResource("1_wqnbb")
+scene_path = "res://level_1.tscn"
+
+[node name="Label" parent="Play3" index="1"]
+offset_left = 0.5
+offset_right = 0.5
+text = "quick start"
+
 [editable path="Play"]
 [editable path="Play2"]
+[editable path="Play3"]

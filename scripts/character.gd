@@ -19,11 +19,12 @@ const JUMP_VELOCITY = -700.0
 const DRAG = 0.9
 const ACCELERATION = 0.7
 
-var double_jumps_remaining: int = 1
 var knockback_until: int = -INF
 var knockback_vector: Vector2 = Vector2(0,0)
 var coyote_time_ends_at: int = -INF
 var allow_color_resolve = true
+var jumped_this_frame = false
+var playing_death_animation = false
 
 var visual_direction: int = -1
 
@@ -33,9 +34,9 @@ func jump():
 	$SpriteAnchor.scale.y = 0.7
 	$SpriteAnchor.scale.x = 1.2
 	velocity.y = JUMP_VELOCITY
-	if (!is_grounded()):
-		double_jumps_remaining -= 1
 	$JumpSound.play()
+	coyote_time_ends_at = -INF
+	jumped_this_frame = true
 		
 func is_grounded():
 	return is_on_floor() or $GroundBonus.get_overlapping_bodies()
@@ -45,6 +46,7 @@ func knockback(vec: Vector2):
 	knockback_until = Time.get_ticks_msec() + 150
 
 func update_frame():
+	if playing_death_animation: return
 	if direction == 0:
 		$SpriteAnchor/Sprite.texture = frames[skin].idle[0]
 	else:
@@ -56,13 +58,18 @@ func update_frame():
 			
 func _ready():
 	if skin == "spirit":
-		var m = CanvasItemMaterial.new()
-		m.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
-		$SpriteAnchor/Sprite.material = m
+		var m = preload("res://shaders/death_effect.tres").duplicate(true)
+		$SpriteAnchor.material = m
 	else:
 		modulate = Color(1,1,1,0)
 		allow_color_resolve = false
-
+		
+func _process(delta):
+	if skin == "spirit" && playing_death_animation:
+		$SpriteAnchor.material["shader_parameter/progress"] = clampf($SpriteAnchor.material["shader_parameter/progress"]+(delta/1.5),0,1)
+		$SpriteAnchor/Sprite.scale += Vector2(delta,delta)
+		$SpriteAnchor.z_index = 2
+		
 func _physics_process(delta):
 	update_frame()
 	
@@ -74,12 +81,11 @@ func _physics_process(delta):
 			Util.smooth_step(modulate.b,1,0.9,delta),
 			Util.smooth_step(modulate.a,1,0.9,delta),
 		)
-	
+		
 	# Add the gravity.
-	if is_grounded():
-		double_jumps_remaining = 0
-		coyote_time_ends_at = Time.get_ticks_msec() + 200
-	else:
+	if is_grounded() && !jumped_this_frame:
+		coyote_time_ends_at = Time.get_ticks_msec() + 1000
+	if !is_on_floor():
 		velocity += get_gravity() * delta
 		
 	$SpriteAnchor.scale.y = Util.smooth_step($SpriteAnchor.scale.y,1,0.9,delta)
@@ -92,5 +98,8 @@ func _physics_process(delta):
 	
 	if (Time.get_ticks_msec() < knockback_until):
 		velocity = knockback_vector
+
+	if playing_death_animation:
+		velocity = Vector2(0,0)
 
 	move_and_slide()

@@ -21,20 +21,25 @@ var health: int = max_health
 var input_history: Array[FrameInput] = []
 
 var invul_until: int = -INF
-var resync_position_at: int = 5000
+var jump_buffered_until: int = -INF
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameManager.current_level = this_level
+	Fader.fade(Color(0,0,0,0),0.25,Color(0,0,0,1))
 
 func damage(amount: int):
+	if health <= 0: return
 	if (Time.get_ticks_msec() > invul_until):
 		invul_until = Time.get_ticks_msec() + 500
 		health -= amount
 		spirit.modulate = Color(255,1,1,1)
 		MusicManager.play_dmg()
 		if (health <= 0):
-			GameManager.change_scene("res://death_screen.tscn")
+			spirit.playing_death_animation = true
+			await Util.wait(1)
+			await Fader.fade(Color(0,0,0,1),0.25)
+			GameManager.change_scene("res://level_"+str(GameManager.current_level)+".tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -49,9 +54,17 @@ func _physics_process(delta):
 	# pass input to spirit
 	spirit.direction = Input.get_axis("left", "right")
 	history_entry.direction = spirit.direction
-	if Input.is_action_just_pressed("jump") and ((Time.get_ticks_msec() < spirit.coyote_time_ends_at) || (spirit.double_jumps_remaining > 0)):
-		history_entry.did_jump = true
-		spirit.jump()
+	if Input.is_action_just_pressed("jump"):
+		if (Time.get_ticks_msec() < spirit.coyote_time_ends_at) || spirit.is_grounded():
+			history_entry.did_jump = true
+			spirit.jump()
+		else:
+			jump_buffered_until = Time.get_ticks_msec() + 75
+	elif Time.get_ticks_msec() < jump_buffered_until:
+		if spirit.is_on_floor():
+			history_entry.did_jump = true
+			spirit.jump()
+			
 		
 	if (spirit.get_node("PlayerDetector")as Area2D).overlaps_area(body.get_node("PlayerDetector")):
 		if (Time.get_ticks_msec() > invul_until):
@@ -69,9 +82,7 @@ func _physics_process(delta):
 		
 		var frame = input_history[0]
 		
-		if true:
-			resync_position_at = Time.get_ticks_msec() + 500
-			body.global_position = frame.known_position
+		body.global_position = frame.known_position
 		
 		#walk
 		body.direction = frame.direction
