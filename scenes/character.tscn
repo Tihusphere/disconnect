@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b5u22kp4i32xn"]
+[gd_scene load_steps=11 format=3 uid="uid://b5u22kp4i32xn"]
 
 [ext_resource type="Script" path="res://scripts/character.gd" id="1_5kuj4"]
 [ext_resource type="Material" uid="uid://cko3vgutfvcm7" path="res://shaders/death_effect.tres" id="2_8s06j"]
@@ -13,16 +13,6 @@ height = 94.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qn4j8"]
 radius = 22.0227
-
-[sub_resource type="Shader" id="Shader_nj63j"]
-code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's CanvasItemMaterial.
-
-shader_type canvas_item;
-render_mode blend_add;
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2yl8f"]
-shader = SubResource("Shader_nj63j")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jucix"]
 blend_mode = 1
@@ -56,11 +46,10 @@ shape = SubResource("CircleShape2D_qn4j8")
 
 [node name="SpriteAnchor" type="CanvasGroup" parent="."]
 position = Vector2(0, 51)
-fit_margin = 0.0
-clear_margin = 0.0
+fit_margin = 30.0
+clear_margin = 30.0
 
 [node name="Sprite" type="Sprite2D" parent="SpriteAnchor"]
-material = SubResource("ShaderMaterial_2yl8f")
 position = Vector2(1, -53)
 scale = Vector2(0.436577, 0.436577)
 texture = ExtResource("3_tyqd6")

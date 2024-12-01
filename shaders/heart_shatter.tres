@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://b5krc6yob3s62"]
+
+[ext_resource type="Shader" path="res://shaders/heart_shatter.gdshader" id="1_xkkne"]
+
+[sub_resource type="Gradient" id="Gradient_5o5yr"]
+colors = PackedColorArray(0.28, 0.28, 0.28, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dmj5b"]
+noise_type = 2
+seed = 4
+fractal_octaves = 1
+cellular_return_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1pt03"]
+color_ramp = SubResource("Gradient_5o5yr")
+noise = SubResource("FastNoiseLite_dmj5b")
+
+[resource]
+shader = ExtResource("1_xkkne")
+shader_parameter/brokenness = 0.0
+shader_parameter/noise = SubResource("NoiseTexture2D_1pt03")

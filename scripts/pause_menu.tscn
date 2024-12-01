@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dotnwx34s1u03"]
+[gd_scene load_steps=4 format=3 uid="uid://dotnwx34s1u03"]
 
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_ueaki"]
+[ext_resource type="Texture2D" uid="uid://caiyldyeyeoe8" path="res://textures/pause_menu.png" id="2_1n5pp"]
+[ext_resource type="PackedScene" uid="uid://b5wu5aa3tym70" path="res://scenes/button.tscn" id="3_335h4"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 layer = 20
@@ -15,7 +17,15 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.427451)
 script = ExtResource("1_ueaki")
 
-[node name="Label" type="Label" parent="PauseMenu"]
+[node name="TextureRect" type="TextureRect" parent="PauseMenu"]
+layout_mode = 0
+offset_left = 44.0
+offset_right = 2604.0
+offset_bottom = 1600.0
+scale = Vector2(0.405786, 0.405786)
+texture = ExtResource("2_1n5pp")
+
+[node name="Title" type="Label" parent="PauseMenu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -23,12 +33,83 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -281.0
-offset_top = -60.0
+offset_top = -213.0
 offset_right = 281.0
-offset_bottom = 60.0
+offset_bottom = -93.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 100
-text = "paused (real)"
+text = "Paused"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Level" type="Label" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -281.0
+offset_top = -101.0
+offset_right = 281.0
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "Level 5"
+horizontal_alignment = 1
+
+[node name="CenterAnchor" type="Control" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Resume" parent="PauseMenu/CenterAnchor" instance=ExtResource("3_335h4")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -218.0
+offset_top = -66.0
+offset_right = 218.0
+offset_bottom = 101.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+pivot_offset = Vector2(218, 83.5)
+
+[node name="Label" parent="PauseMenu/CenterAnchor/Resume" index="1"]
+text = "Resume"
+
+[node name="ExitLevel" parent="PauseMenu/CenterAnchor" instance=ExtResource("3_335h4")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -218.0
+offset_top = 75.0
+offset_right = 218.0
+offset_bottom = 242.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+pivot_offset = Vector2(218, 83.5)
+
+[node name="Label" parent="PauseMenu/CenterAnchor/ExitLevel" index="1"]
+text = "Exit Level"
+
+[connection signal="pressed" from="PauseMenu/CenterAnchor/Resume" to="PauseMenu" method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/CenterAnchor/ExitLevel" to="PauseMenu" method="_on_exit_level_pressed"]
+
+[editable path="PauseMenu/CenterAnchor/Resume"]
+[editable path="PauseMenu/CenterAnchor/ExitLevel"]

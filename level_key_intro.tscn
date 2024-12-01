@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b4bxht5y8kk4p"]
+[gd_scene load_steps=16 format=3 uid="uid://b4bxht5y8kk4p"]
 
 [ext_resource type="Script" path="res://scripts/character_manager.gd" id="1_h3g2b"]
 [ext_resource type="Texture2D" uid="uid://u23h212msltg" path="res://textures/bg.png" id="2_h86wc"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bylacadyc3313" path="res://scenes/win_object.tscn" id="7_twbtd"]
 [ext_resource type="Texture2D" uid="uid://btgemn3njnhq6" path="res://textures/level_key_intro_colliision.png" id="8_ka0pn"]
 [ext_resource type="PackedScene" uid="uid://dsf40k5sw8vlt" path="res://scenes/poison_plant.tscn" id="9_rxy37"]
+[ext_resource type="Texture2D" uid="uid://dwj43pribiy8m" path="res://textures/level_key_intro.png" id="9_ybjp4"]
 [ext_resource type="Script" path="res://scripts/kill_box.gd" id="10_5y6l8"]
 [ext_resource type="PackedScene" uid="uid://bysl3myxiityj" path="res://scenes/door.tscn" id="10_funmc"]
 [ext_resource type="PackedScene" uid="uid://cjktopccjk1s" path="res://scenes/key.tscn" id="11_vaenq"]
@@ -78,9 +79,14 @@ scene_path = "res://win_screen.tscn"
 position = Vector2(1243, 0)
 scale = Vector2(0.4, 0.4)
 
-[node name="Untitled21" type="Sprite2D" parent="Level"]
+[node name="CollisionGenerator" type="Sprite2D" parent="Level"]
+visible = false
 position = Vector2(1090, 162)
 texture = ExtResource("8_ka0pn")
+
+[node name="Art" type="Sprite2D" parent="Level"]
+position = Vector2(1090, 162)
+texture = ExtResource("9_ybjp4")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Level"]
 position = Vector2(1090, 162)
@@ -120,11 +126,12 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_qk2ot")
 
 [node name="RedDoor" parent="." instance=ExtResource("10_funmc")]
-position = Vector2(635, 180)
+position = Vector2(632, 178)
+rotation = -0.13592
 
 [node name="YellowDoor" parent="." instance=ExtResource("10_funmc")]
-position = Vector2(1589, 233)
-scale = Vector2(1.01808, 1.01808)
+position = Vector2(1573, 238)
+rotation = 0.0844499
 color = 1
 
 [node name="GreenDoor" parent="." instance=ExtResource("10_funmc")]
@@ -134,6 +141,7 @@ scale = Vector2(1.01808, 1.01808)
 color = 2
 
 [node name="RedKey" parent="." instance=ExtResource("11_vaenq")]
+modulate = Color(1, 0.411765, 0.411765, 1)
 position = Vector2(181, 85)
 
 [node name="YellowKey" parent="." instance=ExtResource("11_vaenq")]

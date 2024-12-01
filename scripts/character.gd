@@ -67,7 +67,7 @@ func _ready():
 func _process(delta):
 	if skin == "spirit" && playing_death_animation:
 		$SpriteAnchor.material["shader_parameter/progress"] = clampf($SpriteAnchor.material["shader_parameter/progress"]+(delta/1.5),0,1)
-		$SpriteAnchor/Sprite.scale += Vector2(delta,delta)
+		$SpriteAnchor/Sprite.scale += Vector2(delta,delta)*0.5
 		$SpriteAnchor.z_index = 2
 		
 func _physics_process(delta):

@@ -5,7 +5,6 @@ extends Area2D
 func _ready():
 	body_entered.connect(func _body_entered(body):
 		if (body.get_meta("is_char")):
-			print(body)
 			get_node("/root/Game/CharacterManager").damage(9999)
 	)
 

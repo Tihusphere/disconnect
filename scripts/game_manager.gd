@@ -14,7 +14,10 @@ var is_paused: bool = false:
 
 func change_scene(path: String):
 	get_tree().change_scene_to_file(path)
-	on_scene_changed.emit()
+	(func _emit():
+		on_scene_changed.emit()
+	).call_deferred()
+		
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
