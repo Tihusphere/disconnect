@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4fkn8x0lamj7"]
+[gd_scene load_steps=7 format=3 uid="uid://c4fkn8x0lamj7"]
 
 [ext_resource type="PackedScene" uid="uid://b5wu5aa3tym70" path="res://scenes/button.tscn" id="1_2vbmg"]
+[ext_resource type="Script" path="res://scripts/main_menu_controller.gd" id="1_qtkm2"]
 [ext_resource type="Script" path="res://scripts/scene_change_button.gd" id="1_wqnbb"]
 [ext_resource type="Texture2D" uid="uid://u23h212msltg" path="res://textures/bg.png" id="2_gwsw8"]
 [ext_resource type="Texture2D" uid="uid://bw6qf4tv1hpnl" path="res://textures/waterfall.png" id="3_xgdog"]
+[ext_resource type="Texture2D" uid="uid://caiyldyeyeoe8" path="res://textures/pause_menu.png" id="7_ke855"]
 
-[node name="DeathScreen" type="CanvasLayer"]
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource("1_qtkm2")
 
 [node name="Waterfall" type="Sprite2D" parent="."]
 position = Vector2(581, 320)
@@ -46,62 +49,149 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -218.5
-offset_top = -279.0
+offset_top = -333.0
 offset_right = 218.5
-offset_bottom = -112.0
+offset_bottom = -166.0
 grow_horizontal = 2
 grow_vertical = 0
-script = ExtResource("1_wqnbb")
-scene_path = "res://intro_cutscene.tscn"
 
-[node name="Label" parent="Play" index="1"]
+[node name="Label" parent="Play" index="2"]
 offset_left = 0.5
 offset_right = 0.5
 text = "Play
 "
 
-[node name="Play2" parent="." instance=ExtResource("1_2vbmg")]
+[node name="BottomAnchor" type="Control" parent="."]
+layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -60.0
-offset_top = -82.0
-offset_right = 377.0
-offset_bottom = 85.0
+offset_left = 3.0
+offset_right = 3.0
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(0.278732, 0.278732)
-script = ExtResource("1_wqnbb")
-scene_path = "res://level_test.tscn"
+scale = Vector2(0.45, 0.45)
 
-[node name="Label" parent="Play2" index="1"]
-offset_left = 0.5
-offset_right = 0.5
-text = "test level"
-
-[node name="Play3" parent="." instance=ExtResource("1_2vbmg")]
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomAnchor"]
+layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 81.0
-offset_top = -79.0
-offset_right = 518.0
-offset_bottom = 88.0
+offset_left = -491.111
+offset_top = -260.0
+offset_right = 482.889
+offset_bottom = -92.9999
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(0.278732, 0.278732)
-script = ExtResource("1_wqnbb")
-scene_path = "res://level_1.tscn"
+theme_override_constants/separation = 100
+alignment = 1
 
-[node name="Label" parent="Play3" index="1"]
+[node name="Lore" parent="BottomAnchor/HBoxContainer" instance=ExtResource("1_2vbmg")]
+layout_mode = 2
+script = ExtResource("1_wqnbb")
+scene_path = "res://intro_cutscene.tscn"
+
+[node name="Label" parent="BottomAnchor/HBoxContainer/Lore" index="2"]
 offset_left = 0.5
 offset_right = 0.5
-text = "quick start"
+text = "Replay Lore"
+
+[node name="Controls" parent="BottomAnchor/HBoxContainer" instance=ExtResource("1_2vbmg")]
+layout_mode = 2
+text = "
+"
+
+[node name="Label" parent="BottomAnchor/HBoxContainer/Controls" index="2"]
+offset_left = 0.5
+offset_right = 0.5
+text = "Controls"
+
+[node name="Controls" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.427451)
+
+[node name="TextureRect" type="TextureRect" parent="Controls"]
+layout_mode = 0
+offset_left = 44.0
+offset_right = 2604.0
+offset_bottom = 1600.0
+scale = Vector2(0.405786, 0.405786)
+texture = ExtResource("7_ke855")
+
+[node name="Title" type="Label" parent="Controls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -281.0
+offset_top = -213.0
+offset_right = 281.0
+offset_bottom = -93.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "Controls"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Controls" type="Label" parent="Controls"]
+layout_mode = 1
+offset_left = 279.0
+offset_top = 234.0
+offset_right = 889.0
+offset_bottom = 491.0
+theme_override_font_sizes/font_size = 40
+text = "Left: [A]  [Left Arrow]
+Right: [D]  [Right Arrow]
+Jump: [Space]  [W]  [Up Arrow]
+Restart Level: [R]
+Pause: [Esc]"
+
+[node name="CenterAnchor" type="Control" parent="Controls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Close" parent="Controls/CenterAnchor" instance=ExtResource("1_2vbmg")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = 83.0
+offset_right = 407.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(218, 83.5)
+
+[node name="Label" parent="Controls/CenterAnchor/Close" index="2"]
+text = "Close"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="BottomAnchor/HBoxContainer/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="Controls/CenterAnchor/Close" to="." method="_on_close_controls_pressed"]
 
 [editable path="Play"]
-[editable path="Play2"]
-[editable path="Play3"]
+[editable path="BottomAnchor/HBoxContainer/Lore"]
+[editable path="BottomAnchor/HBoxContainer/Controls"]
+[editable path="Controls/CenterAnchor/Close"]

@@ -70,7 +70,7 @@ follow = NodePath("../Spirit")
 
 [node name="WinObject" parent="." instance=ExtResource("7_el5xa")]
 position = Vector2(3985, 155)
-scene_path = "res://win_screen.tscn"
+scene_path = "res://level_select_screen.tscn"
 
 [node name="Level" type="StaticBody2D" parent="."]
 position = Vector2(1243, 0)

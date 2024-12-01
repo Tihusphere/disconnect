@@ -5,7 +5,17 @@ signal on_pause_changed(is_paused: bool)
 
 var scaled_ticks_msec: int
 var unscaled_delta: float
-var current_level_path: String
+
+var _level_name_regex: RegEx
+var current_level_path: String:
+	set(value):
+		if !_level_name_regex:
+			_level_name_regex = RegEx.new()
+			_level_name_regex.compile("(?<=\\/(?:level_))(.+)(?=\\.tscn$)")
+		current_level_id = _level_name_regex.search(value).get_string()
+		current_level_path = value
+var current_level_id: String
+
 var is_paused: bool = false:
 	set(value):
 		Engine.time_scale = 0 if value else 1
@@ -16,7 +26,10 @@ func change_scene(path: String):
 	get_tree().change_scene_to_file(path)
 	(func _emit():
 		on_scene_changed.emit()
+		await get_tree().process_frame
+		Fader.fade(Color(0,0,0,0),.5)
 	).call_deferred()
+	
 		
 # Called when the node enters the scene tree for the first time.
 func _ready():

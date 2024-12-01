@@ -1,14 +1,10 @@
 extends ColorRect
 
-var level_name_regex = RegEx.new()
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	level_name_regex.compile("(?<=\\/(?:level_))(.+)(?=\\.tscn$)")
 	GameManager.on_pause_changed.connect(func _on_pause_changed(is_paused: bool):
 		visible = is_paused
-		if visible:
-			$Level.text = "Level "+level_name_regex.search(GameManager.current_level_path).get_string()
+		$Level.text = "Level "+GameManager.current_level_id
 	)
 
 func toggle():

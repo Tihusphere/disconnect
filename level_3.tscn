@@ -1,18 +1,18 @@
 [gd_scene load_steps=16 format=3 uid="uid://b4bxht5y8kk4p"]
 
-[ext_resource type="Script" path="res://scripts/character_manager.gd" id="1_h3g2b"]
-[ext_resource type="Texture2D" uid="uid://u23h212msltg" path="res://textures/bg.png" id="2_h86wc"]
-[ext_resource type="Texture2D" uid="uid://bw6qf4tv1hpnl" path="res://textures/waterfall.png" id="3_q8b7m"]
-[ext_resource type="PackedScene" uid="uid://b5u22kp4i32xn" path="res://scenes/character.tscn" id="4_skcjg"]
-[ext_resource type="Script" path="res://scripts/camera.gd" id="5_rg8rx"]
-[ext_resource type="PackedScene" uid="uid://dtgnxahrsly61" path="res://scenes/gui.tscn" id="6_38oyl"]
-[ext_resource type="PackedScene" uid="uid://bylacadyc3313" path="res://scenes/win_object.tscn" id="7_twbtd"]
-[ext_resource type="Texture2D" uid="uid://btgemn3njnhq6" path="res://textures/level_key_intro_colliision.png" id="8_ka0pn"]
-[ext_resource type="PackedScene" uid="uid://dsf40k5sw8vlt" path="res://scenes/poison_plant.tscn" id="9_rxy37"]
-[ext_resource type="Texture2D" uid="uid://dwj43pribiy8m" path="res://textures/level_key_intro.png" id="9_ybjp4"]
-[ext_resource type="Script" path="res://scripts/kill_box.gd" id="10_5y6l8"]
-[ext_resource type="PackedScene" uid="uid://bysl3myxiityj" path="res://scenes/door.tscn" id="10_funmc"]
-[ext_resource type="PackedScene" uid="uid://cjktopccjk1s" path="res://scenes/key.tscn" id="11_vaenq"]
+[ext_resource type="Script" path="res://scripts/character_manager.gd" id="1_oqwtm"]
+[ext_resource type="Texture2D" uid="uid://u23h212msltg" path="res://textures/bg.png" id="2_40051"]
+[ext_resource type="Texture2D" uid="uid://bw6qf4tv1hpnl" path="res://textures/waterfall.png" id="3_1s4mu"]
+[ext_resource type="PackedScene" uid="uid://b5u22kp4i32xn" path="res://scenes/character.tscn" id="4_6g1rj"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="5_3vvbj"]
+[ext_resource type="PackedScene" uid="uid://dtgnxahrsly61" path="res://scenes/gui.tscn" id="6_es4fp"]
+[ext_resource type="PackedScene" uid="uid://bylacadyc3313" path="res://scenes/win_object.tscn" id="7_naaej"]
+[ext_resource type="Texture2D" uid="uid://btgemn3njnhq6" path="res://textures/level_key_intro_colliision.png" id="8_ekp7o"]
+[ext_resource type="Texture2D" uid="uid://dwj43pribiy8m" path="res://textures/level_key_intro.png" id="9_qg6ul"]
+[ext_resource type="Script" path="res://scripts/kill_box.gd" id="10_nj0v2"]
+[ext_resource type="PackedScene" uid="uid://bysl3myxiityj" path="res://scenes/door.tscn" id="11_cegg0"]
+[ext_resource type="PackedScene" uid="uid://cjktopccjk1s" path="res://scenes/key.tscn" id="12_pxbsq"]
+[ext_resource type="PackedScene" uid="uid://dsf40k5sw8vlt" path="res://scenes/poison_plant.tscn" id="13_8a5bi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7fx88"]
 size = Vector2(8330, 264.5)
@@ -24,38 +24,38 @@ size = Vector2(20, 400)
 metadata/is_game = true
 
 [node name="CharacterManager" type="Node" parent="."]
-script = ExtResource("1_h3g2b")
+script = ExtResource("1_oqwtm")
 this_level = "key_intro"
 
 [node name="Bg" type="Sprite2D" parent="."]
 position = Vector2(-21, 67)
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_h86wc")
+texture = ExtResource("2_40051")
 
 [node name="Waterfall" type="Sprite2D" parent="Bg"]
 z_index = -1
 position = Vector2(2585, 2.5)
-texture = ExtResource("3_q8b7m")
+texture = ExtResource("3_1s4mu")
 
 [node name="Bg2" type="Sprite2D" parent="Bg"]
 position = Vector2(5112.5, 0)
-texture = ExtResource("2_h86wc")
+texture = ExtResource("2_40051")
 
 [node name="Waterfall2" type="Sprite2D" parent="Bg"]
 z_index = -1
 position = Vector2(7740, 2.5)
-texture = ExtResource("3_q8b7m")
+texture = ExtResource("3_1s4mu")
 
 [node name="Bg3" type="Sprite2D" parent="Bg"]
 position = Vector2(10267.5, 0)
-texture = ExtResource("2_h86wc")
+texture = ExtResource("2_40051")
 
-[node name="Spirit" parent="." instance=ExtResource("4_skcjg")]
+[node name="Spirit" parent="." instance=ExtResource("4_6g1rj")]
 position = Vector2(-580, 190)
 floor_max_angle = 1.55334
 skin = "spirit"
 
-[node name="Body" parent="." instance=ExtResource("4_skcjg")]
+[node name="Body" parent="." instance=ExtResource("4_6g1rj")]
 position = Vector2(196, 1043)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("follow")]
@@ -66,14 +66,14 @@ limit_top = -400
 limit_right = 3392
 limit_bottom = 400
 editor_draw_limits = true
-script = ExtResource("5_rg8rx")
+script = ExtResource("5_3vvbj")
 follow = NodePath("../Spirit")
 
-[node name="CanvasLayer" parent="." instance=ExtResource("6_38oyl")]
+[node name="CanvasLayer" parent="." instance=ExtResource("6_es4fp")]
 
-[node name="WinObject" parent="." instance=ExtResource("7_twbtd")]
+[node name="WinObject" parent="." instance=ExtResource("7_naaej")]
 position = Vector2(2057, -49)
-scene_path = "res://win_screen.tscn"
+scene_path = "res://level_select_screen.tscn"
 
 [node name="Level" type="StaticBody2D" parent="."]
 position = Vector2(1243, 0)
@@ -82,11 +82,11 @@ scale = Vector2(0.4, 0.4)
 [node name="CollisionGenerator" type="Sprite2D" parent="Level"]
 visible = false
 position = Vector2(1090, 162)
-texture = ExtResource("8_ka0pn")
+texture = ExtResource("8_ekp7o")
 
 [node name="Art" type="Sprite2D" parent="Level"]
 position = Vector2(1090, 162)
-texture = ExtResource("9_ybjp4")
+texture = ExtResource("9_qg6ul")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Level"]
 position = Vector2(1090, 162)
@@ -105,7 +105,7 @@ position = Vector2(2532, 528)
 collision_layer = 2
 collision_mask = 2
 monitorable = false
-script = ExtResource("10_5y6l8")
+script = ExtResource("10_nj0v2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillBox"]
 position = Vector2(-180, 107.75)
@@ -125,35 +125,34 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
 shape = SubResource("RectangleShape2D_qk2ot")
 
-[node name="RedDoor" parent="." instance=ExtResource("10_funmc")]
+[node name="RedDoor" parent="." instance=ExtResource("11_cegg0")]
 position = Vector2(632, 178)
 rotation = -0.13592
 
-[node name="YellowDoor" parent="." instance=ExtResource("10_funmc")]
+[node name="YellowDoor" parent="." instance=ExtResource("11_cegg0")]
 position = Vector2(1573, 238)
 rotation = 0.0844499
 color = 1
 
-[node name="GreenDoor" parent="." instance=ExtResource("10_funmc")]
+[node name="GreenDoor" parent="." instance=ExtResource("11_cegg0")]
 position = Vector2(2154, 79)
 rotation = -1.59826
 scale = Vector2(1.01808, 1.01808)
 color = 2
 
-[node name="RedKey" parent="." instance=ExtResource("11_vaenq")]
-modulate = Color(1, 0.411765, 0.411765, 1)
+[node name="RedKey" parent="." instance=ExtResource("12_pxbsq")]
 position = Vector2(181, 85)
 
-[node name="YellowKey" parent="." instance=ExtResource("11_vaenq")]
+[node name="YellowKey" parent="." instance=ExtResource("12_pxbsq")]
 modulate = Color(1, 0.901961, 0.411765, 1)
 position = Vector2(1483, -67)
 color = 1
 
-[node name="GreenKey" parent="." instance=ExtResource("11_vaenq")]
+[node name="GreenKey" parent="." instance=ExtResource("12_pxbsq")]
 modulate = Color(0.411765, 1, 0.411765, 1)
 position = Vector2(2930, 153)
 color = 2
 
-[node name="PoisonPlant" parent="." instance=ExtResource("9_rxy37")]
+[node name="PoisonPlant" parent="." instance=ExtResource("13_8a5bi")]
 position = Vector2(2613, 268)
 rotation = 0.068357

@@ -26,7 +26,6 @@ var jump_buffered_until: int = -INF
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameManager.current_level_path = get_tree().current_scene.scene_file_path
-	Fader.fade(Color(0,0,0,0),0.25,Color(0,0,0,1))
 
 func damage(amount: int):
 	if health <= 0: return
@@ -67,6 +66,9 @@ func _physics_process(delta):
 			history_entry.did_jump = true
 			spirit.jump()
 			
+	if Input.is_action_just_pressed("reset"):
+		await Fader.fade(Color(0,0,0,1),0.25)
+		GameManager.change_scene(GameManager.current_level_path)
 		
 	if (spirit.get_node("PlayerDetector")as Area2D).overlaps_area(body.get_node("PlayerDetector")):
 		if (GameManager.scaled_ticks_msec > invul_until):

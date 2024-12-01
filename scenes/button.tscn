@@ -8,11 +8,24 @@
 blend_mode = 1
 
 [node name="Restart" type="Button"]
+custom_minimum_size = Vector2(437, 167)
 offset_right = 437.0
 offset_bottom = 167.0
 theme = ExtResource("1_ew6o2")
 theme_override_font_sizes/font_size = 50
 metadata/_edit_group_ = true
+
+[node name="Glow" type="TextureRect" parent="."]
+material = SubResource("CanvasItemMaterial_iu5nq")
+custom_minimum_size = Vector2(500, 193)
+layout_mode = 0
+offset_left = -33.0
+offset_top = -1.0
+offset_right = 467.0
+offset_bottom = 192.0
+texture = ExtResource("3_p108v")
+expand_mode = 1
+stretch_mode = 3
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -21,18 +34,6 @@ offset_top = -2.0
 offset_right = 471.0
 offset_bottom = 191.0
 texture = ExtResource("2_dfwhx")
-expand_mode = 1
-stretch_mode = 3
-
-[node name="Glow" type="TextureRect" parent="TextureRect"]
-z_index = -1
-material = SubResource("CanvasItemMaterial_iu5nq")
-layout_mode = 0
-offset_left = -4.0
-offset_top = 1.0
-offset_right = 496.0
-offset_bottom = 194.0
-texture = ExtResource("3_p108v")
 expand_mode = 1
 stretch_mode = 3
 

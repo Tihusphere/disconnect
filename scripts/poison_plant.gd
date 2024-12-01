@@ -32,14 +32,9 @@ func get_switch_time():
 	else: 
 		return off_length
 
-func p(s):
-	if get_meta("printing",false) == true:
-		print(s)
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var last_state = is_on
-	p(get_switch_time())
 	while GameManager.scaled_ticks_msec - last_switched_at > get_switch_time():
 		last_switched_at += get_switch_time()
 		_first_switch_completed = true
@@ -49,21 +44,6 @@ func _process(delta):
 			$AudioStreamPlayer2D.play_fade_in()
 		else:
 			$AudioStreamPlayer2D.fade_out()
-		
-	#if GameManager.scaled_ticks_msec > switch_at:
-		#is_on = not is_on
-		#var lost_msec = GameManager.scaled_ticks_msec - switch_at
-		#p(lost_msec)
-		#while lost_msec > (on_length if is_on else off_length):
-			#lost_msec -= (on_length if is_on else off_length)
-			#is_on = not is_on
-		#p(is_on)
-		#
-		#switch_at = GameManager.scaled_ticks_msec + (on_length if is_on else off_length)
-		#if is_on:
-			#$AudioStreamPlayer2D.play_fade_in()
-		#else:
-			#$AudioStreamPlayer2D.fade_out()
 	
 	if is_on:
 		$SpriteAnchor.scale.y = Util.scaled_smooth_step($SpriteAnchor.scale.y,1.02,0.7,delta)

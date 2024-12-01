@@ -1,17 +1,17 @@
 [gd_scene load_steps=15 format=3 uid="uid://b0bxx6jifmee8"]
 
-[ext_resource type="Script" path="res://scripts/character_manager.gd" id="1_ney21"]
-[ext_resource type="Texture2D" uid="uid://u23h212msltg" path="res://textures/bg.png" id="2_n1bv8"]
-[ext_resource type="Texture2D" uid="uid://bw6qf4tv1hpnl" path="res://textures/waterfall.png" id="3_fe0st"]
-[ext_resource type="PackedScene" uid="uid://b5u22kp4i32xn" path="res://scenes/character.tscn" id="4_l2ixc"]
-[ext_resource type="Script" path="res://scripts/camera.gd" id="5_sylqh"]
-[ext_resource type="PackedScene" uid="uid://dtgnxahrsly61" path="res://scenes/gui.tscn" id="6_d25jy"]
-[ext_resource type="PackedScene" uid="uid://bylacadyc3313" path="res://scenes/win_object.tscn" id="7_ram5c"]
-[ext_resource type="Texture2D" uid="uid://3thoqb5y5pbi" path="res://textures/level_backtrack_collision.png" id="8_d161d"]
-[ext_resource type="Script" path="res://scripts/kill_box.gd" id="10_yer0l"]
-[ext_resource type="PackedScene" uid="uid://bysl3myxiityj" path="res://scenes/door.tscn" id="11_nlvqe"]
-[ext_resource type="PackedScene" uid="uid://cjktopccjk1s" path="res://scenes/key.tscn" id="12_t5eep"]
-[ext_resource type="PackedScene" uid="uid://dsf40k5sw8vlt" path="res://scenes/poison_plant.tscn" id="13_v8jvj"]
+[ext_resource type="Script" path="res://scripts/character_manager.gd" id="1_pdtrr"]
+[ext_resource type="Texture2D" uid="uid://u23h212msltg" path="res://textures/bg.png" id="2_a0nno"]
+[ext_resource type="Texture2D" uid="uid://bw6qf4tv1hpnl" path="res://textures/waterfall.png" id="3_47f7r"]
+[ext_resource type="PackedScene" uid="uid://b5u22kp4i32xn" path="res://scenes/character.tscn" id="4_wce4j"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="5_0hoeb"]
+[ext_resource type="PackedScene" uid="uid://dtgnxahrsly61" path="res://scenes/gui.tscn" id="6_csxn2"]
+[ext_resource type="PackedScene" uid="uid://bylacadyc3313" path="res://scenes/win_object.tscn" id="7_f47x4"]
+[ext_resource type="Texture2D" uid="uid://3thoqb5y5pbi" path="res://textures/level_backtrack_collision.png" id="8_2oa8h"]
+[ext_resource type="Script" path="res://scripts/kill_box.gd" id="9_boo1s"]
+[ext_resource type="PackedScene" uid="uid://bysl3myxiityj" path="res://scenes/door.tscn" id="10_m1xhp"]
+[ext_resource type="PackedScene" uid="uid://dsf40k5sw8vlt" path="res://scenes/poison_plant.tscn" id="11_04odm"]
+[ext_resource type="PackedScene" uid="uid://cjktopccjk1s" path="res://scenes/key.tscn" id="12_6p326"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7fx88"]
 size = Vector2(8330, 264.5)
@@ -23,38 +23,38 @@ size = Vector2(20, 400)
 metadata/is_game = true
 
 [node name="CharacterManager" type="Node" parent="."]
-script = ExtResource("1_ney21")
+script = ExtResource("1_pdtrr")
 this_level = "key_intro"
 
 [node name="Bg" type="Sprite2D" parent="."]
 position = Vector2(-21, 67)
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_n1bv8")
+texture = ExtResource("2_a0nno")
 
 [node name="Waterfall" type="Sprite2D" parent="Bg"]
 z_index = -1
 position = Vector2(2585, 2.5)
-texture = ExtResource("3_fe0st")
+texture = ExtResource("3_47f7r")
 
 [node name="Bg2" type="Sprite2D" parent="Bg"]
 position = Vector2(5112.5, 0)
-texture = ExtResource("2_n1bv8")
+texture = ExtResource("2_a0nno")
 
 [node name="Waterfall2" type="Sprite2D" parent="Bg"]
 z_index = -1
 position = Vector2(7740, 2.5)
-texture = ExtResource("3_fe0st")
+texture = ExtResource("3_47f7r")
 
 [node name="Bg3" type="Sprite2D" parent="Bg"]
 position = Vector2(10267.5, 0)
-texture = ExtResource("2_n1bv8")
+texture = ExtResource("2_a0nno")
 
-[node name="Spirit" parent="." instance=ExtResource("4_l2ixc")]
+[node name="Spirit" parent="." instance=ExtResource("4_wce4j")]
 position = Vector2(-656, 199)
 floor_max_angle = 1.55334
 skin = "spirit"
 
-[node name="Body" parent="." instance=ExtResource("4_l2ixc")]
+[node name="Body" parent="." instance=ExtResource("4_wce4j")]
 position = Vector2(196, 1043)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("follow")]
@@ -65,12 +65,12 @@ limit_top = -400
 limit_right = 4072
 limit_bottom = 400
 editor_draw_limits = true
-script = ExtResource("5_sylqh")
+script = ExtResource("5_0hoeb")
 follow = NodePath("../Spirit")
 
-[node name="CanvasLayer" parent="." instance=ExtResource("6_d25jy")]
+[node name="CanvasLayer" parent="." instance=ExtResource("6_csxn2")]
 
-[node name="WinObject" parent="." instance=ExtResource("7_ram5c")]
+[node name="WinObject" parent="." instance=ExtResource("7_f47x4")]
 position = Vector2(-607, -74)
 scene_path = "res://win_screen.tscn"
 
@@ -80,7 +80,7 @@ scale = Vector2(0.4, 0.4)
 
 [node name="CollisionGenerator" type="Sprite2D" parent="Level"]
 position = Vector2(1090, 162)
-texture = ExtResource("8_d161d")
+texture = ExtResource("8_2oa8h")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Level"]
 position = Vector2(1090, 162)
@@ -115,7 +115,7 @@ position = Vector2(2532, 528)
 collision_layer = 2
 collision_mask = 2
 monitorable = false
-script = ExtResource("10_yer0l")
+script = ExtResource("9_boo1s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillBox"]
 position = Vector2(-180, 107.75)
@@ -135,92 +135,91 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
 shape = SubResource("RectangleShape2D_qk2ot")
 
-[node name="GreenDoor" parent="." instance=ExtResource("11_nlvqe")]
+[node name="GreenDoor" parent="." instance=ExtResource("10_m1xhp")]
 position = Vector2(28, -22)
 rotation = 0.713409
 color = 2
 
-[node name="PoisonPlant" parent="." instance=ExtResource("13_v8jvj")]
+[node name="PoisonPlant" parent="." instance=ExtResource("11_04odm")]
 position = Vector2(-445, -78)
 rotation = -0.198198
 off_length = 3000
 
-[node name="PoisonPlant3" parent="." instance=ExtResource("13_v8jvj")]
+[node name="PoisonPlant3" parent="." instance=ExtResource("11_04odm")]
 position = Vector2(1625, 139)
 rotation = 3.43334
 off_length = 6000
-metadata/printing = true
 
-[node name="PoisonPlant9" parent="." instance=ExtResource("13_v8jvj")]
+[node name="PoisonPlant9" parent="." instance=ExtResource("11_04odm")]
 position = Vector2(2020, -165)
 rotation = 6.48557
 delay = 4000
 off_length = 8000
 
-[node name="PoisonPlant10" parent="." instance=ExtResource("13_v8jvj")]
+[node name="PoisonPlant10" parent="." instance=ExtResource("11_04odm")]
 position = Vector2(1912, -168)
 rotation = 6.25608
 delay = 3000
 off_length = 8000
 
-[node name="PoisonPlant11" parent="." instance=ExtResource("13_v8jvj")]
+[node name="PoisonPlant11" parent="." instance=ExtResource("11_04odm")]
 position = Vector2(1804, -170)
 rotation = 6.25608
 delay = 2000
 off_length = 8000
 
-[node name="PoisonPlant12" parent="." instance=ExtResource("13_v8jvj")]
+[node name="PoisonPlant12" parent="." instance=ExtResource("11_04odm")]
 position = Vector2(1688, -161)
 rotation = 6.25608
 delay = 1000
 off_length = 8000
 
-[node name="PoisonPlant7" parent="." instance=ExtResource("13_v8jvj")]
+[node name="PoisonPlant7" parent="." instance=ExtResource("11_04odm")]
 position = Vector2(2003, 109)
 rotation = 2.42853
 delay = 3000
 off_length = 6000
 
-[node name="PoisonPlant8" parent="." instance=ExtResource("13_v8jvj")]
+[node name="PoisonPlant8" parent="." instance=ExtResource("11_04odm")]
 position = Vector2(2082, 14.0001)
 rotation = 2.18121
 delay = 4000
 off_length = 6000
 
-[node name="PoisonPlant5" parent="." instance=ExtResource("13_v8jvj")]
+[node name="PoisonPlant5" parent="." instance=ExtResource("11_04odm")]
 position = Vector2(1754, 170)
 rotation = 3.1484
 delay = 1000
 off_length = 6000
 
-[node name="PoisonPlant6" parent="." instance=ExtResource("13_v8jvj")]
+[node name="PoisonPlant6" parent="." instance=ExtResource("11_04odm")]
 position = Vector2(1889, 177)
 rotation = 2.91872
 delay = 2000
 off_length = 6000
 
-[node name="RedKey" parent="." instance=ExtResource("12_t5eep")]
+[node name="RedKey" parent="." instance=ExtResource("12_6p326")]
 modulate = Color(1, 0.411765, 0.411765, 1)
 position = Vector2(558, -147)
 
-[node name="YellowKey" parent="." instance=ExtResource("12_t5eep")]
+[node name="YellowKey" parent="." instance=ExtResource("12_6p326")]
 modulate = Color(1, 0.901961, 0.411765, 1)
 position = Vector2(2443, 86)
 color = 1
 
-[node name="GreenKey" parent="." instance=ExtResource("12_t5eep")]
+[node name="GreenKey" parent="." instance=ExtResource("12_6p326")]
 modulate = Color(0.411765, 1, 0.411765, 1)
 position = Vector2(3909, 238)
 color = 2
 
-[node name="Door" parent="." instance=ExtResource("11_nlvqe")]
+[node name="Door" parent="." instance=ExtResource("10_m1xhp")]
 position = Vector2(1131, -23)
 rotation = 0.0458191
 
-[node name="YellowDoor2" parent="." instance=ExtResource("11_nlvqe")]
+[node name="YellowDoor2" parent="." instance=ExtResource("10_m1xhp")]
 position = Vector2(1410, -44.0001)
 rotation = -1.11054
 color = 1
 
-[node name="PoisonPlant4" parent="." instance=ExtResource("13_v8jvj")]
+[node name="PoisonPlant4" parent="." instance=ExtResource("11_04odm")]
 position = Vector2(3280, 277)

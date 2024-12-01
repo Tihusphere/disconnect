@@ -1,33 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://11yngummlsn0"]
+[gd_scene load_steps=6 format=3 uid="uid://11yngummlsn0"]
 
-[ext_resource type="Texture2D" uid="uid://dui7hkyhkmci0" path="res://textures/lose_screen.png" id="1_lr56o"]
+[ext_resource type="Texture2D" uid="uid://ciye1eouo8dlm" path="res://textures/level_select_bg.png" id="1_vwth1"]
 [ext_resource type="PackedScene" uid="uid://b5wu5aa3tym70" path="res://scenes/button.tscn" id="2_q5wk2"]
+[ext_resource type="PackedScene" uid="uid://cvyo5ye0lyplc" path="res://scenes/square_button.tscn" id="3_6moam"]
+[ext_resource type="Script" path="res://scripts/level_select_grid.gd" id="3_iuyx5"]
+[ext_resource type="Script" path="res://scripts/scene_change_button.gd" id="3_vtg3g"]
 
-[sub_resource type="GDScript" id="GDScript_d8pyp"]
-resource_name = "restart"
-script/source = "extends Button
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-func _on_pressed():
-	GameManager.change_scene(\"res://level_\"+str(GameManager.current_level)+\".tscn\")
-"
-
-[node name="DeathScreen" type="CanvasLayer"]
+[node name="LevelSelectScreen" type="CanvasLayer"]
 
 [node name="LoseScreen" type="Sprite2D" parent="."]
 position = Vector2(577, 346)
 scale = Vector2(0.453174, 0.453174)
-texture = ExtResource("1_lr56o")
+texture = ExtResource("1_vwth1")
 
 [node name="Restart" parent="." instance=ExtResource("2_q5wk2")]
 anchors_preset = 7
@@ -35,16 +19,18 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -218.0
-offset_top = -191.0
-offset_right = 219.0
-offset_bottom = -24.0
+offset_left = -554.0
+offset_top = -107.0
+offset_right = -117.0
+offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 0
-script = SubResource("GDScript_d8pyp")
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_vtg3g")
+scene_path = "res://main_menu.tscn"
 
-[node name="Label" parent="Restart" index="1"]
-text = "Restart"
+[node name="Label" parent="Restart" index="2"]
+text = "Back"
 
 [node name="Label2" type="Label" parent="."]
 anchors_preset = 8
@@ -59,9 +45,32 @@ offset_bottom = -93.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 125
-text = "womp"
+text = "Level Select"
 horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -259.0
+offset_top = -140.0
+offset_right = 259.0
+offset_bottom = 222.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 40
+columns = 3
+script = ExtResource("3_iuyx5")
+
+[node name="Template" parent="GridContainer" instance=ExtResource("3_6moam")]
+visible = false
+layout_mode = 2
+script = ExtResource("3_vtg3g")
 
 [connection signal="pressed" from="Restart" to="Restart" method="_on_pressed"]
 
 [editable path="Restart"]
+[editable path="GridContainer/Template"]

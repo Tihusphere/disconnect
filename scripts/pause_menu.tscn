@@ -86,7 +86,7 @@ grow_vertical = 2
 scale = Vector2(0.7, 0.7)
 pivot_offset = Vector2(218, 83.5)
 
-[node name="Label" parent="PauseMenu/CenterAnchor/Resume" index="1"]
+[node name="Label" parent="PauseMenu/CenterAnchor/Resume" index="2"]
 text = "Resume"
 
 [node name="ExitLevel" parent="PauseMenu/CenterAnchor" instance=ExtResource("3_335h4")]
@@ -105,7 +105,7 @@ grow_vertical = 2
 scale = Vector2(0.7, 0.7)
 pivot_offset = Vector2(218, 83.5)
 
-[node name="Label" parent="PauseMenu/CenterAnchor/ExitLevel" index="1"]
+[node name="Label" parent="PauseMenu/CenterAnchor/ExitLevel" index="2"]
 text = "Exit Level"
 
 [connection signal="pressed" from="PauseMenu/CenterAnchor/Resume" to="PauseMenu" method="_on_resume_pressed"]

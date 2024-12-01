@@ -16,5 +16,8 @@ func _process(delta):
 
 func _on_body_entered(body):
 	character_manager.invul_until = INF
+	if GameManager.current_level_id.is_valid_int():
+		DataManager.save_data.cleared_levels = max(DataManager.save_data.cleared_levels,int(GameManager.current_level_id))
+		DataManager.write_save_file()
 	await Fader.fade(Color(0,0,0,1),0.25)
 	GameManager.change_scene(scene_path)

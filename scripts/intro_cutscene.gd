@@ -27,7 +27,9 @@ func _on_button_pressed():
 	var new_slide = get_node_or_null(str(slide))
 	
 	if new_slide == null:
-		GameManager.change_scene("res://level_1.tscn")
+		DataManager.save_data.has_seen_lore = true
+		DataManager.write_save_file()
+		GameManager.change_scene("res://level_select_screen.tscn")
 		return
 	
 	new_slide.modulate.a = 0

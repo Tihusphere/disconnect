@@ -85,6 +85,7 @@ func _process(delta: float) -> void:
 	var original_position = $Sprite.global_position
 	$Sprite.global_position = Util.scaled_smooth_step($Sprite.global_position,sprite_goal_pos,sprite_pos_easing,delta)
 	
+	
 	# sprite rotationing
 	$Sprite.global_rotation -= last_rotation_offset
 	if in_door:
