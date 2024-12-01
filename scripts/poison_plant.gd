@@ -33,7 +33,7 @@ func get_switch_time():
 		return off_length
 
 func p(s):
-	if get_meta("printing") == true:
+	if get_meta("printing",false) == true:
 		print(s)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
