@@ -10,6 +10,8 @@ void fragment(){
 	vec4 c = texture(screen_texture, (vec2(sin(TIME),cos(TIME))*0.1*progress) + SCREEN_UV + ((0.5-texture(noise,UV).xy) * progress/2.0));
 	c.a *= 1.0-5.0*(distance(vec2(0.5,.5),UV)*progress);
 	c.a *= 1.0-progress;
-	
+
+	//vec4 c = texture(noise,UV);
+
 	COLOR *= c;
 }

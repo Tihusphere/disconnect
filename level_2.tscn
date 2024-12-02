@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dj6jxd0sm8sgf"]
+[gd_scene load_steps=15 format=3 uid="uid://dj6jxd0sm8sgf"]
 
 [ext_resource type="Script" path="res://scripts/character_manager.gd" id="1_qvwmo"]
 [ext_resource type="Texture2D" uid="uid://u23h212msltg" path="res://textures/bg.png" id="2_01j4a"]
@@ -9,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://bylacadyc3313" path="res://scenes/win_object.tscn" id="7_el5xa"]
 [ext_resource type="Texture2D" uid="uid://bq8tvagx03nmi" path="res://textures/level_2.png" id="8_47nof"]
 [ext_resource type="PackedScene" uid="uid://dsf40k5sw8vlt" path="res://scenes/poison_plant.tscn" id="9_4phst"]
+[ext_resource type="Texture2D" uid="uid://qpawrwouivma" path="res://textures/split_levels/level_2_1.png" id="9_wgst0"]
 [ext_resource type="Script" path="res://scripts/kill_box.gd" id="10_h6c32"]
+[ext_resource type="Texture2D" uid="uid://bo62mm1wbjyj3" path="res://textures/split_levels/level_2_2.png" id="10_wkolm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7fx88"]
 size = Vector2(8330, 264.5)
@@ -77,8 +79,19 @@ position = Vector2(1243, 0)
 scale = Vector2(0.4, 0.4)
 
 [node name="Untitled21" type="Sprite2D" parent="Level"]
+visible = false
 position = Vector2(1090, 162)
 texture = ExtResource("8_47nof")
+
+[node name="VisualLeft" type="Sprite2D" parent="Level"]
+position = Vector2(-1910, 162)
+scale = Vector2(1, 1)
+texture = ExtResource("9_wgst0")
+
+[node name="VisualRight" type="Sprite2D" parent="Level"]
+position = Vector2(4090, 162)
+scale = Vector2(1, 1)
+texture = ExtResource("10_wkolm")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Level"]
 position = Vector2(1090, 162)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b0bxx6jifmee8"]
+[gd_scene load_steps=18 format=3 uid="uid://b0bxx6jifmee8"]
 
 [ext_resource type="Script" path="res://scripts/character_manager.gd" id="1_pdtrr"]
 [ext_resource type="Texture2D" uid="uid://u23h212msltg" path="res://textures/bg.png" id="2_a0nno"]
@@ -7,9 +7,12 @@
 [ext_resource type="Script" path="res://scripts/camera.gd" id="5_0hoeb"]
 [ext_resource type="PackedScene" uid="uid://dtgnxahrsly61" path="res://scenes/gui.tscn" id="6_csxn2"]
 [ext_resource type="PackedScene" uid="uid://bylacadyc3313" path="res://scenes/win_object.tscn" id="7_f47x4"]
-[ext_resource type="Texture2D" uid="uid://3thoqb5y5pbi" path="res://textures/level_backtrack_collision.png" id="8_2oa8h"]
+[ext_resource type="Texture2D" uid="uid://3thoqb5y5pbi" path="res://textures/level_4_collision.png" id="8_2oa8h"]
+[ext_resource type="Texture2D" uid="uid://bflkb2wu8uk8q" path="res://textures/level_4.png" id="9_aos7w"]
 [ext_resource type="Script" path="res://scripts/kill_box.gd" id="9_boo1s"]
 [ext_resource type="PackedScene" uid="uid://bysl3myxiityj" path="res://scenes/door.tscn" id="10_m1xhp"]
+[ext_resource type="Texture2D" uid="uid://dklg6wwi0gssv" path="res://textures/split_levels/level_4_1.png" id="10_yti6o"]
+[ext_resource type="Texture2D" uid="uid://c74xx6r7ckdi2" path="res://textures/split_levels/level_4_2.png" id="11_1gymb"]
 [ext_resource type="PackedScene" uid="uid://dsf40k5sw8vlt" path="res://scenes/poison_plant.tscn" id="11_04odm"]
 [ext_resource type="PackedScene" uid="uid://cjktopccjk1s" path="res://scenes/key.tscn" id="12_6p326"]
 
@@ -79,8 +82,24 @@ position = Vector2(1243, 0)
 scale = Vector2(0.4, 0.4)
 
 [node name="CollisionGenerator" type="Sprite2D" parent="Level"]
+visible = false
 position = Vector2(1090, 162)
 texture = ExtResource("8_2oa8h")
+
+[node name="Art" type="Sprite2D" parent="Level"]
+visible = false
+position = Vector2(1090, 162)
+texture = ExtResource("9_aos7w")
+
+[node name="VisualLeft" type="Sprite2D" parent="Level"]
+position = Vector2(-1910, 162)
+scale = Vector2(1, 1)
+texture = ExtResource("10_yti6o")
+
+[node name="VisualRight" type="Sprite2D" parent="Level"]
+position = Vector2(4090, 162)
+scale = Vector2(1, 1)
+texture = ExtResource("11_1gymb")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Level"]
 position = Vector2(1090, 162)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d2vg578r46jnx"]
+[gd_scene load_steps=20 format=3 uid="uid://d2vg578r46jnx"]
 
 [ext_resource type="Texture2D" uid="uid://u23h212msltg" path="res://textures/bg.png" id="1_gaq1f"]
 [ext_resource type="PackedScene" uid="uid://b5u22kp4i32xn" path="res://scenes/character.tscn" id="1_ik2d6"]
@@ -9,8 +9,10 @@
 [ext_resource type="Script" path="res://scripts/camera.gd" id="5_44615"]
 [ext_resource type="PackedScene" uid="uid://bylacadyc3313" path="res://scenes/win_object.tscn" id="6_loica"]
 [ext_resource type="Texture2D" uid="uid://dxwsv7re244nk" path="res://textures/level_1.png" id="8_tegjo"]
+[ext_resource type="Texture2D" uid="uid://ws5wmmc7pn6o" path="res://textures/split_levels/level_1_1.png" id="9_03kq2"]
 [ext_resource type="Texture2D" uid="uid://dnlfmwhm450pw" path="res://textures/cgenerator.png" id="9_ckbhr"]
 [ext_resource type="Script" path="res://scripts/kill_box.gd" id="10_ofbvh"]
+[ext_resource type="Texture2D" uid="uid://bi70dpsurxdn5" path="res://textures/split_levels/level_1_2.png" id="10_yuc6k"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_syicx"]
 
@@ -89,8 +91,17 @@ position = Vector2(1243, 0)
 scale = Vector2(0.4, 0.4)
 
 [node name="Untitled21" type="Sprite2D" parent="Level"]
+visible = false
 position = Vector2(1090, 162)
 texture = ExtResource("8_tegjo")
+
+[node name="VisualLeft" type="Sprite2D" parent="Level"]
+position = Vector2(-1910, 162)
+texture = ExtResource("9_03kq2")
+
+[node name="VisualRight" type="Sprite2D" parent="Level"]
+position = Vector2(4090, 162)
+texture = ExtResource("10_yuc6k")
 
 [node name="CGenerator" type="Sprite2D" parent="Level"]
 visible = false
@@ -202,7 +213,7 @@ position = Vector2(6, 39.5)
 shape = SubResource("RectangleShape2D_t5cbd")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(-733, 40)
+position = Vector2(-731, 40)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]

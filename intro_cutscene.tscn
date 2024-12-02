@@ -62,15 +62,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -42.0
-offset_top = 152.0
-offset_right = 685.0
-offset_bottom = 357.0
+offset_left = -71.0
+offset_top = 135.0
+offset_right = 656.0
+offset_bottom = 340.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 70
 text = "I found a
-strange crystal"
+strange crystal..."
 horizontal_alignment = 1
 
 [node name="3" type="TextureRect" parent="."]
@@ -102,14 +102,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -341.0
-offset_top = -281.0
-offset_right = 386.0
-offset_bottom = -76.0
+offset_left = -409.0
+offset_top = -319.0
+offset_right = 318.0
+offset_bottom = -114.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 70
-text = "My spirit"
+text = "My body and soul"
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="4"]
@@ -126,7 +126,7 @@ offset_bottom = 432.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 70
-text = "was disconnected..."
+text = "were disconnected..."
 horizontal_alignment = 1
 
 [node name="5" type="TextureRect" parent="."]
@@ -148,16 +148,33 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -670.0
-offset_top = 149.0
-offset_right = 57.0
-offset_bottom = 354.0
+offset_left = -164.0
+offset_top = -321.0
+offset_right = 563.0
+offset_bottom = -116.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 70
-text = "My body follows
-my footsteps"
-horizontal_alignment = 1
+text = "My body copies my
+every move."
+horizontal_alignment = 2
+
+[node name="Label3" type="Label" parent="5"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -558.0
+offset_top = 146.0
+offset_right = 169.0
+offset_bottom = 351.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+text = "It chases
+relentlessly."
 
 [node name="6" type="TextureRect" parent="."]
 visible = false
@@ -171,6 +188,28 @@ grow_vertical = 2
 texture = ExtResource("6_ajx7r")
 expand_mode = 5
 
+[node name="ColorRect" type="ColorRect" parent="6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.278431, 0.419608, 1)
+
+[node name="7" type="TextureRect" parent="6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -144.0
+offset_right = -144.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_ajx7r")
+expand_mode = 5
+
 [node name="Label2" type="Label" parent="6"]
 layout_mode = 1
 anchors_preset = 8
@@ -178,15 +217,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -548.0
-offset_top = -337.0
-offset_right = 179.0
-offset_bottom = -132.0
+offset_left = 231.0
+offset_top = -212.0
+offset_right = 563.0
+offset_bottom = 313.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 70
-text = "I must
-reconnect"
+text = "Only those very same crystals can save me."
+horizontal_alignment = 2
+autowrap_mode = 2
 
 [node name="Button" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0.00392157)

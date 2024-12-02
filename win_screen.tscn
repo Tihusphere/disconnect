@@ -1,67 +1,37 @@
-[gd_scene load_steps=6 format=3 uid="uid://dw6302170fk37"]
+[gd_scene load_steps=5 format=3 uid="uid://dw6302170fk37"]
 
 [ext_resource type="PackedScene" uid="uid://b5wu5aa3tym70" path="res://scenes/button.tscn" id="1_cifq8"]
 [ext_resource type="Texture2D" uid="uid://bwk2vn1gxjbfe" path="res://textures/win_screen.png" id="1_op2np"]
 [ext_resource type="Script" path="res://scripts/scene_change_button.gd" id="1_ybwxc"]
-
-[sub_resource type="GDScript" id="GDScript_5275t"]
-resource_name = "quit"
-script/source = "extends Button
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-func _on_pressed():
-	get_tree().quit()
-"
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ad6q8"]
 
 [node name="WinScreen" type="CanvasLayer"]
 
 [node name="LoseScreen" type="Sprite2D" parent="."]
-position = Vector2(574.168, 290)
-scale = Vector2(0.450962, 0.450962)
+position = Vector2(591.952, 301.115)
+scale = Vector2(0.464856, 0.464856)
 texture = ExtResource("1_op2np")
 
 [node name="Restart2" parent="." instance=ExtResource("1_cifq8")]
+modulate = Color(1, 1, 1, 0.454902)
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -232.0
-offset_top = -96.0
-offset_right = 205.0
-offset_bottom = 71.0
+offset_left = -553.0
+offset_top = -619.0
+offset_right = -116.0
+offset_bottom = -452.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_ybwxc")
 scene_path = "res://main_menu.tscn"
 
-[node name="Label" parent="Restart2" index="1"]
+[node name="Label" parent="Restart2" index="2"]
 text = "Main Menu"
-
-[node name="Quit" parent="." instance=ExtResource("1_cifq8")]
-offset_left = 592.0
-offset_top = 552.0
-offset_right = 1029.0
-offset_bottom = 719.0
-scale = Vector2(0.5, 0.5)
-script = SubResource("GDScript_5275t")
-
-[node name="Label" parent="Quit" index="1"]
-text = "Quit
-"
 
 [node name="Label" type="Label" parent="."]
 modulate = Color(0.67, 0.9945, 1, 0.552941)
@@ -69,11 +39,30 @@ material = SubResource("CanvasItemMaterial_ad6q8")
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -205.0
+offset_top = -206.0
 offset_right = 730.0
+offset_bottom = -1.0
 grow_vertical = 0
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 30
 text = "Joey Noble"
+vertical_alignment = 2
+
+[node name="Label3" type="Label" parent="."]
+modulate = Color(0.67, 0.9945, 1, 0.552941)
+material = SubResource("CanvasItemMaterial_ad6q8")
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -365.0
+offset_top = -205.0
+offset_right = 365.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 75
+text = "Victory!"
+horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="Label2" type="Label" parent="."]
@@ -88,7 +77,7 @@ offset_left = -730.0
 offset_top = -205.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 30
 text = "Pritha Anand"
 horizontal_alignment = 2
 vertical_alignment = 2
@@ -106,7 +95,4 @@ offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[connection signal="pressed" from="Quit" to="Quit" method="_on_pressed"]
-
 [editable path="Restart2"]
-[editable path="Quit"]
