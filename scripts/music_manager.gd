@@ -5,6 +5,7 @@ extends AudioStreamPlayer
 
 var cutoff_goal = 10000.0
 var easing = 0.8
+var music_on = true
 
 func play_dmg():
 	$Damage.play(.23)
@@ -25,4 +26,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Input.is_action_just_pressed("toggle_music"):
+		music_on = !music_on
 	music_low_pass.cutoff_hz = Util.smooth_step(music_low_pass.cutoff_hz,cutoff_goal,easing,GameManager.unscaled_delta)
+	volume_db = Util.smooth_step(volume_db,0 if music_on else -80,0.9 if music_on else 0.98,GameManager.unscaled_delta)
